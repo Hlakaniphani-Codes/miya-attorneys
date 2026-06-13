@@ -139,7 +139,7 @@
 
   <script>
     const TENANT_ID = 'miya-attorneys';
-    const API_BASE = 'http://localhost:3001';
+const API_BASE = window.__API_BASE__ || 'https://miya-attorneys.onrender.com';
 
     function getToken() {
       return sessionStorage.getItem('adminToken');

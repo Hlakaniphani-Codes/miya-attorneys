@@ -327,7 +327,7 @@
     let currentFilter = 'all';
     let currentSearch = '';
 
-    const API_BASE = window.__API_BASE__ || 'http://localhost:3001';
+const API_BASE = window.__API_BASE__ || 'https://miya-attorneys.onrender.com';
     const TENANT_ID = 'miya-attorneys';
 
     function escapeHtml(str) { if (!str) return ''; return String(str).replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m])); }

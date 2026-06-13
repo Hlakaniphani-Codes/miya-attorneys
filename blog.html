@@ -414,7 +414,7 @@
     
     async function loadBlogPosts() {
       try {
-        const res = await fetch(`http://localhost:3001/api/tenants/miya-attorneys/posts?take=50&skip=0`);
+const res = await fetch(`${window.__API_BASE__ || 'https://miya-attorneys.onrender.com'}/api/tenants/miya-attorneys/posts?take=50&skip=0`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         allPosts = (data.posts || []).map(p => ({
