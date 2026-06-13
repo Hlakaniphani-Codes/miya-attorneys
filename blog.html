@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Blog | Miya Attorneys | Legal Insights & News</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { gold: { 50: '#FDFBF7', 100: '#F7F2E8', 200: '#EFE3CE', 500: '#DFB15B', 600: '#C59946', 700: '#9E7731' } },
+          fontFamily: { serif: ['Cormorant Garamond', 'serif'], sans: ['Montserrat', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; background-color: #FFFFFF; color: #1F1F1F; }
+    
+    /* Underline animation for navigation */
+    .hover-line {
+      position: relative;
+    }
+    .hover-line::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 1px;
+      bottom: -4px;
+      left: 0;
+      background-color: #DFB15B;
+      transform-origin: bottom right;
+      transition: transform 0.3s ease-out;
+    }
+    .hover-line:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+    
+    /* Blog Cards */
+    .blog-card {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .blog-card:hover {
+      border-color: #DFB15B;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 20px -12px rgba(0,0,0,0.1);
+    }
+    .category-tag {
+      background: rgba(223,177,91,0.1);
+      border: 1px solid rgba(223,177,91,0.3);
+      border-radius: 100px;
+      padding: 0.2rem 0.8rem;
+      font-size: 0.65rem;
+      color: #DFB15B;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .category-tag.active {
+      background: rgba(223,177,91,0.2);
+    }
+    .featured-card {
+      background: #FFFFFF;
+      border: 1px solid #DFB15B;
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .featured-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 25px -12px rgba(0,0,0,0.1);
+    }
+    
+    /* Mobile menu (same as index) */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: #FFFFFF;
+      z-index: 1000;
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      border-left: 1px solid #EFE3CE;
+      padding: 2rem;
+    }
+    .mobile-menu.open { right: 0; }
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(18,18,18,0.15);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+    }
+    .backdrop.visible { opacity: 1; visibility: visible; }
+    .menu-link {
+      display: block;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid rgba(223,177,91,0.2);
+      font-weight: 500;
+      color: #1F1F1F;
+    }
+    .menu-link:hover {
+      color: #DFB15B;
+      padding-left: 0.5rem;
+      border-color: #DFB15B;
+    }
+    
+    /* Back to top */
+    #backToTop {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.2s;
+      background: #DFB15B;
+      color: #1F1F1F;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    #backToTop.show { opacity: 1; visibility: visible; }
+    
+    .section-divider {
+      width: 50px;
+      height: 2px;
+      background: #DFB15B;
+      margin: 1rem auto;
+      border-radius: 2px;
+    }
+    .search-input:focus {
+      border-color: #DFB15B;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(223,177,91,0.1);
+    }
+  </style>
+</head>
+<body class="text-stone-800 font-sans text-xs sm:text-sm antialiased">
+
+<!-- Top Bar (identical to index) -->
+<div class="bg-gold-100 border-b border-gold-200 text-stone-700 py-2.5 text-[10px] tracking-widest uppercase text-center font-semibold px-4">
+  Level 1 BBBEE Contributor &nbsp;|&nbsp; Wholly Black Owned Firm Championing Legal Transformation
+</div>
+
+<!-- Navigation (exact copy from index) -->
+<header class="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gold-200/60 transition-all duration-300">
+  <div class="container mx-auto px-6 lg:px-16 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex flex-col text-left group">
+      <span class="font-serif text-2xl lg:text-3xl font-medium tracking-wide text-stone-900 group-hover:text-gold-600 transition-colors">MIYA ATTORNEYS</span>
+      <span class="text-[9px] uppercase tracking-[0.35em] text-gold-600 font-bold mt-0.5">Your Legal Remedy</span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-stone-600">
+      <a href="index.html" class="hover-line transition-colors hover:text-stone-900">Home</a>
+      <a href="about.html" class="hover-line transition-colors hover:text-stone-900">About</a>
+      <a href="services.html" class="hover-line transition-colors hover:text-stone-900">Practice Areas</a>
+      <a href="attorneys.html" class="hover-line transition-colors hover:text-stone-900">Attorneys</a>
+      <a href="blog.html" class="text-stone-900 border-b-2 border-gold-500 pb-1">Insights</a>
+      <a href="contact.html" class="hover-line transition-colors hover:text-stone-900">Contact</a>
+    </nav>
+    <div class="hidden lg:block">
+      <a href="contact.html" id="navBookBtn" class="border border-gold-600 bg-white hover:bg-gold-500 hover:text-white text-gold-700 font-bold tracking-wider uppercase text-[10px] px-5 py-2.5 transition-all duration-300">Request Consultation</a>
+    </div>
+    <button id="mobileMenuBtn" class="lg:hidden text-stone-800 focus:outline-none p-1"><i class="fa-solid fa-bars-staggered text-lg"></i></button>
+  </div>
+</header>
+
+<!-- Mobile Drawer -->
+<div class="backdrop" id="menuBackdrop"></div>
+<div class="mobile-menu flex flex-col" id="sideMenu">
+  <div class="flex justify-between items-center pb-6 border-b border-gold-200">
+    <span class="font-serif text-xl font-medium tracking-wide text-stone-900">MIYA ATTORNEYS</span>
+    <button id="closeMenuBtn" class="text-stone-500 hover:text-gold-600 text-2xl">&times;</button>
+  </div>
+  <nav class="flex flex-col gap-5 mt-8 text-xs font-bold uppercase tracking-widest text-stone-600">
+    <a href="index.html" class="menu-link">Home</a>
+    <a href="about.html" class="menu-link">About Us</a>
+    <a href="services.html" class="menu-link">Practice Areas</a>
+    <a href="attorneys.html" class="menu-link">Our Attorneys</a>
+    <a href="blog.html" class="menu-link text-gold-600">Blog / Insights</a>
+    <a href="contact.html" class="menu-link">Contact Us</a>
+  </nav>
+  <div class="mt-auto pt-6 border-t border-gold-200 text-[10px] text-stone-400 tracking-wider"><p>© 2026 MIYA ATTORNEYS PTY LTD.</p></div>
+</div>
+
+<main>
+  <!-- Hero Section -->
+  <section class="relative py-20 bg-black text-center overflow-hidden">
+    <div class="absolute inset-0 bg-gold-500/5"></div>
+    <div class="container mx-auto px-6 lg:px-16 relative">
+      <div class="inline-flex items-center gap-2 bg-gold-500/15 backdrop-blur-sm border border-gold-500/30 rounded-full px-4 py-1.5 mb-6">
+        <i class="fas fa-newspaper text-gold-500 text-xs"></i>
+        <span class="text-gold-500 text-xs font-semibold">LEGAL INSIGHTS & NEWS</span>
+      </div>
+      <h1 class="font-serif text-4xl md:text-6xl font-bold text-white">The <span class="text-gold-500">Miya</span> Blog</h1>
+      <div class="section-divider mx-auto mt-5"></div>
+      <p class="text-gray-300 max-w-2xl mx-auto text-base">Expert analysis, firm updates, and legal perspectives from Miya Attorneys. Stay informed on the latest developments in law and justice.</p>
+    </div>
+  </section>
+
+  <!-- Search & Filters -->
+  <section class="py-8 bg-white border-b border-gold-100">
+    <div class="container mx-auto px-6 lg:px-16">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="relative w-full md:w-80">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm"></i>
+          <input type="text" id="searchInput" placeholder="Search articles..." class="search-input w-full bg-white border border-gray-200 rounded-full py-2 pl-10 pr-4 text-sm focus:border-gold-500 transition">
+        </div>
+        <div class="flex flex-wrap justify-center gap-2" id="categoryFilters">
+          <button data-category="all" class="category-tag active">All Posts</button>
+          <button data-category="Legal Insight" class="category-tag">Legal Insights</button>
+          <button data-category="News" class="category-tag">Firm News</button>
+          <button data-category="Case Study" class="category-tag">Case Studies</button>
+          <button data-category="Legislative" class="category-tag">Legislative Updates</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Post (dynamic) -->
+  <section class="py-12 bg-gold-50/20" id="featuredSection" style="display:none;">
+    <div class="container mx-auto px-6 lg:px-16">
+      <div class="text-center mb-8">
+        <span class="text-gold-500 text-[10px] font-semibold">Featured Article</span>
+        <h2 class="font-serif text-2xl font-bold text-stone-800">Editor's Pick</h2>
+        <div class="w-12 h-0.5 bg-gold-500 mx-auto mt-2 rounded-full"></div>
+      </div>
+      <div id="featuredContainer" class="max-w-4xl mx-auto"></div>
+    </div>
+  </section>
+
+  <!-- Blog Grid -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-6 lg:px-16">
+      <div id="blogContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      <div id="noPosts" class="text-center py-16 hidden">
+        <i class="fas fa-newspaper text-gold-500 text-4xl mb-3 opacity-50"></i>
+        <p class="text-gray-500 text-sm">No blog posts found.</p>
+      </div>
+      <div class="text-center mt-10" id="loadMoreContainer" style="display:none">
+        <button id="loadMoreBtn" class="border border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white px-6 py-2.5 rounded-full text-sm font-semibold transition">Load More Articles</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Subscribe -->
+  <section class="py-16 bg-gold-50/20 text-center">
+    <div class="max-w-md mx-auto">
+      <i class="fas fa-envelope-open-text text-gold-500 text-3xl mb-3"></i>
+      <h2 class="font-serif text-2xl font-bold text-stone-800">Subscribe to Our Newsletter</h2>
+      <div class="w-10 h-0.5 bg-gold-500 mx-auto my-3 rounded-full"></div>
+      <form id="subscribeForm" class="flex flex-col sm:flex-row gap-3">
+        <input type="email" placeholder="Your email address" class="flex-1 bg-white border border-gray-200 rounded-full px-4 py-2 text-sm focus:border-gold-500 outline-none">
+        <button type="submit" class="bg-stone-900 hover:bg-gold-600 text-white px-5 py-2 rounded-full text-sm font-semibold">Subscribe</button>
+      </form>
+      <p id="subscribeMsg" class="text-gold-600 text-xs mt-3 hidden"></p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 bg-white">
+    <div class="container mx-auto px-6 lg:px-16 text-center">
+      <div class="max-w-2xl mx-auto border border-gold-200 bg-gold-50/40 p-10 md:p-14">
+        <i class="fas fa-gavel text-gold-500 text-3xl mb-4"></i>
+        <h3 class="font-serif text-3xl font-light text-stone-900 mb-4">Have a Legal <span class="text-gold-500">Question</span>?</h3>
+        <p class="text-stone-700 font-medium text-xs sm:text-sm max-w-md mx-auto mb-8 leading-relaxed">Our experienced attorneys are ready to assist you with any legal matter. Contact us for a confidential consultation.</p>
+        <div class="flex flex-wrap justify-center gap-4 text-[10px] uppercase tracking-widest font-bold">
+          <a href="contact.html" class="bg-stone-900 hover:bg-gold-600 text-white px-8 py-3.5 transition-colors shadow-sm">Schedule Consultation</a>
+          <a href="attorneys.html" class="border border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white px-8 py-3.5 transition-colors shadow-sm">Meet Our Attorneys</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer (identical to index) -->
+<footer class="bg-white border-t border-gold-200 text-stone-600 py-12 text-center">
+  <div class="container mx-auto px-6 lg:px-16">
+    <div class="flex flex-wrap justify-center gap-8 mb-8 text-[11px] uppercase tracking-widest font-bold">
+      <a href="index.html" class="hover:text-gold-600 transition-colors">Home</a>
+      <a href="about.html" class="hover:text-gold-600 transition-colors">About</a>
+      <a href="services.html" class="hover:text-gold-600 transition-colors">Practice Areas</a>
+      <a href="attorneys.html" class="hover:text-gold-600 transition-colors">Attorneys</a>
+      <a href="blog.html" class="text-stone-900">Insights</a>
+      <a href="contact.html" class="hover:text-gold-600 transition-colors">Contact</a>
+    </div>
+    <p class="text-[10px] text-stone-500 uppercase tracking-widest font-medium leading-relaxed">© 2026 MIYA ATTORNEYS PTY LTD. All Rights Reserved. <br class="sm:hidden"> Regulated Corporate Counsel Group.</p>
+  </div>
+</footer>
+
+<div id="backToTop"><i class="fas fa-arrow-up text-xs"></i></div>
+
+<script>
+  (function() {
+    // Mobile menu
+    const mobileBtn = document.getElementById('mobileMenuBtn'), side = document.getElementById('sideMenu'), backdrop = document.getElementById('menuBackdrop'), close = document.getElementById('closeMenuBtn');
+    function openM() { side.classList.add('open'); backdrop.classList.add('visible'); document.body.style.overflow = 'hidden'; }
+    function closeM() { side.classList.remove('open'); backdrop.classList.remove('visible'); document.body.style.overflow = ''; }
+    mobileBtn?.addEventListener('click', openM); close?.addEventListener('click', closeM); backdrop?.addEventListener('click', closeM);
+    
+    // Back to top
+    const backBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => backBtn.classList.toggle('show', window.scrollY > 500));
+    backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    
+    // Consultation alert
+    const alertConsult = (e) => { e.preventDefault(); alert("📅 Consultation: Please contact our registrar directly at +27 (0) 11 123 4567 or email counsel@miyaattorneys.com"); };
+    document.getElementById('navBookBtn')?.addEventListener('click', alertConsult);
+    
+    // Hide/show navigation on scroll
+    let lastScroll = 0, nav = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      let cur = window.scrollY;
+      if (cur > lastScroll && cur > 100) nav.style.transform = 'translateY(-100%)';
+      else if (cur < lastScroll) nav.style.transform = 'translateY(0)';
+      lastScroll = cur;
+    });
+    
+    // Subscribe form
+    document.getElementById('subscribeForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const msg = document.getElementById('subscribeMsg');
+      msg.classList.remove('hidden');
+      msg.innerHTML = '✓ Thank you for subscribing!';
+      setTimeout(() => msg.classList.add('hidden'), 3000);
+      e.target.reset();
+    });
+    
+    // Blog logic
+    let allPosts = [], currentFilter = 'all', currentSearch = '', visibleCount = 6;
+    
+    function renderLatestPosts() {
+      let filtered = allPosts.filter(p =>
+        (currentFilter === 'all' || p.category === currentFilter) &&
+        (currentSearch === '' ||
+          p.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
+          (p.excerpt || '').toLowerCase().includes(currentSearch.toLowerCase())
+        )
+      );
+      
+      const featuredSec = document.getElementById('featuredSection'), featuredCont = document.getElementById('featuredContainer');
+      if (filtered.length > 0 && currentFilter === 'all' && currentSearch === '') {
+        featuredSec.style.display = 'block';
+        const f = filtered[0];
+        const hasFeaturedImage = !!(f.imageUrl && f.imageUrl.trim());
+        featuredCont.innerHTML = `<div class="featured-card flex flex-col md:flex-row">${hasFeaturedImage ? `<div class="md:w-1/2 overflow-hidden"><img src="${escapeAttr(f.imageUrl)}" class="w-full h-64 object-cover" alt="${escapeHtml(f.title)}"></div>` : ''}<div class="md:w-1/2 p-6"><div class="flex items-center gap-2 mb-2"><span class="category-tag">${escapeHtml(f.category || 'Legal Insight')}</span><span class="text-gray-400 text-[10px]">${new Date(f.date).toLocaleDateString()}</span></div><h3 class="font-serif text-2xl font-bold text-stone-800 mb-2">${escapeHtml(f.title)}</h3><p class="text-gray-600 text-sm">${(f.excerpt || '').substring(0,120)}...</p><div class="mt-4"><a href="blog-post.html?id=${encodeURIComponent(f.id)}" class="text-gold-600 text-[11px] font-semibold inline-flex items-center gap-1 hover:gap-2 transition">Read Full Article <i class="fas fa-arrow-right"></i></a></div></div></div>`;
+        filtered = filtered.slice(1);
+      } else {
+        featuredSec.style.display = 'none';
+      }
+      
+      const container = document.getElementById('blogContainer'), noPosts = document.getElementById('noPosts'), loadMore = document.getElementById('loadMoreContainer');
+      if (filtered.length === 0) {
+        container.innerHTML = '';
+        noPosts.classList.remove('hidden');
+        loadMore.style.display = 'none';
+        return;
+      }
+      noPosts.classList.add('hidden');
+      const visible = filtered.slice(0, visibleCount);
+      container.innerHTML = visible.map(p => {
+        const hasImage = !!(p.imageUrl && p.imageUrl.trim());
+        return `<div class="blog-card">${hasImage ? `<img src="${escapeAttr(p.imageUrl)}" class="w-full h-44 object-cover" alt="${escapeHtml(p.title)}">` : ''}<div class="p-4"><div class="flex items-center gap-2 mb-2"><span class="category-tag">${escapeHtml(p.category || 'Legal Insight')}</span><span class="text-gray-400 text-[10px]">${new Date(p.date).toLocaleDateString()}</span></div><h3 class="font-serif text-base font-bold text-stone-800 mb-1">${escapeHtml(p.title)}</h3><p class="text-gray-600 text-xs">${(p.excerpt || '').substring(0,90)}...</p><div class="mt-3"><a href="blog-post.html?id=${encodeURIComponent(p.id)}" class="text-gold-600 text-[11px] font-semibold inline-flex items-center gap-1">Read more <i class="fas fa-arrow-right text-[9px]"></i></a></div></div></div>`;
+      }).join('');
+      loadMore.style.display = filtered.length > visibleCount ? 'block' : 'none';
+    }
+    
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '<', '>': '>' }[m]));
+    }
+    function escapeAttr(str) {
+      return String(str).replace(/\"/g, '"');
+    }
+    
+    document.querySelectorAll('[data-category]').forEach(btn =>
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-category]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.category;
+        visibleCount = 6;
+        renderLatestPosts();
+      })
+    );
+    document.getElementById('searchInput')?.addEventListener('input', e => {
+      currentSearch = e.target.value;
+      visibleCount = 6;
+      renderLatestPosts();
+    });
+    document.getElementById('loadMoreBtn')?.addEventListener('click', () => {
+      visibleCount += 6;
+      renderLatestPosts();
+    });
+    
+    async function loadBlogPosts() {
+      try {
+        const res = await fetch(`http://localhost:3001/api/tenants/miya-attorneys/posts?take=50&skip=0`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        allPosts = (data.posts || []).map(p => ({
+          id: p.id,
+          title: p.title || 'Untitled',
+          slug: p.slug,
+          category: p.category || 'Legal Insight',
+          excerpt: p.excerpt || '',
+          author: p.author || 'Miya Attorneys',
+          date: p.publishedAt || p.updatedAt || new Date().toISOString(),
+          imageUrl: p.imageUrl || ''
+        }));
+        // Sort newest first for consistent UI
+        allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+      } catch (e) {
+        console.error('loadBlogPosts failed:', e);
+        allPosts = [];
+      }
+      renderLatestPosts();
+    }
+    loadBlogPosts();
+  })();
+</script>
+</body>
+</html>
+

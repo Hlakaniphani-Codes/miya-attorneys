@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Admin Login | MIYA ATTORNEYS – Secure Access</title>
+  <meta name="description" content="Administrative login portal for Miya Attorneys content management.">
+
+  <!-- Google Fonts + Font Awesome + Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: { 50: '#FDFBF7', 100: '#F7F2E8', 200: '#EFE3CE', 500: '#DFB15B', 600: '#C59946', 700: '#9E7731' },
+            dark: { 800: '#222222', 900: '#111111', 950: '#0A0A0A' }
+          },
+          fontFamily: { serif: ['Cormorant Garamond', 'Georgia', 'serif'], sans: ['Montserrat', 'system-ui', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #0A0A0A; font-family: 'Montserrat', sans-serif; }
+    .login-card {
+      background: rgba(17, 17, 17, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(223, 177, 91, 0.3);
+      border-radius: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    .login-card:hover {
+      border-color: #DFB15B;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .input-focus:focus {
+      border-color: #DFB15B;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(223, 177, 91, 0.2);
+    }
+    .gold-gradient {
+      background: linear-gradient(135deg, #DFB15B 0%, #C59946 100%);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-dark-950">
+
+  <!-- Top Bar (same as homepage) -->
+  <div class="bg-dark-950 border-b border-gold-600/30 text-white py-3 text-[11px] tracking-[0.2em] uppercase text-center font-medium px-4">
+    Level 1 BBBEE Contributor &nbsp;|&nbsp; <span class="text-gold-500 font-semibold">Wholly Black Owned Firm</span> — Your Legal Remedy
+  </div>
+
+  <!-- Header (consistent with all pages) -->
+  <header class="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200 transition-all duration-300">
+    <div class="container mx-auto px-6 lg:px-16 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="logo.jpeg" alt="MIYA ATTORNEYS Logo" class="h-14 w-auto object-contain drop-shadow-md" style="max-height: 3.75rem;">
+        <div class="flex flex-col">
+          <span class="font-serif text-2xl lg:text-3xl font-medium tracking-wide text-dark-900 group-hover:text-gold-600 transition-colors">MIYA ATTORNEYS</span>
+          <span class="text-[9px] uppercase tracking-[0.35em] text-gold-600 font-bold mt-0.5">Your Legal Remedy</span>
+        </div>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-600">
+        <a href="index.html" class="hover-line hover:text-dark-900">Home</a>
+        <a href="about.html" class="hover-line hover:text-dark-900">About</a>
+        <a href="services.html" class="hover-line hover:text-dark-900">Practice Areas</a>
+        <a href="attorneys.html" class="hover-line hover:text-dark-900">Attorneys</a>
+        <a href="blog.html" class="hover-line hover:text-dark-900">Insights</a>
+        <a href="contact.html" class="hover-line hover:text-dark-900">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow flex items-center justify-center p-6">
+    <div class="login-card p-8 md:p-10 w-full max-w-md">
+      <div class="text-center mb-8">
+        <div class="w-20 h-20 rounded-full gold-gradient flex items-center justify-center mx-auto mb-5 shadow-lg">
+          <i class="fas fa-lock text-dark-950 text-3xl"></i>
+        </div>
+        <h1 class="font-serif text-3xl font-bold text-white">Admin Access</h1>
+        <p class="text-gray-400 text-sm mt-2 font-light">Secure portal for content management</p>
+        <div class="w-12 h-0.5 bg-gold-500 mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <form id="loginForm" class="space-y-5">
+        <div>
+          <label class="block text-gold-500 text-[10px] uppercase tracking-wider font-semibold mb-1">Username</label>
+          <input type="text" id="username" placeholder="Enter your username" class="w-full bg-dark-900/80 border border-neutral-700 rounded-xl p-3.5 text-white text-sm focus:border-gold-500 input-focus transition">
+        </div>
+        <div>
+          <label class="block text-gold-500 text-[10px] uppercase tracking-wider font-semibold mb-1">Password</label>
+          <input type="password" id="password" placeholder="••••••••" class="w-full bg-dark-900/80 border border-neutral-700 rounded-xl p-3.5 text-white text-sm focus:border-gold-500 input-focus transition">
+        </div>
+        <button type="submit" id="loginBtn" class="w-full gold-gradient text-dark-950 font-bold py-3.5 rounded-xl transition-all duration-300 hover:shadow-lg hover:brightness-110 flex items-center justify-center gap-2 text-sm uppercase tracking-wider">
+          <i class="fas fa-sign-in-alt"></i> Login to Dashboard
+        </button>
+        <p id="loginError" class="text-red-400 text-xs text-center mt-3 hidden font-medium"></p>
+      </form>
+
+      <div class="mt-8 pt-6 border-t border-neutral-800 text-center">
+        <p class="text-neutral-500 text-[10px] uppercase tracking-wider font-semibold">Credentials configured on the backend</p>
+        <p class="text-gold-400/70 text-[10px] mt-1 font-mono">Use your admin username + password</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Simple footer -->
+  <footer class="bg-dark-950 border-t border-neutral-900 text-neutral-500 py-6 text-center text-[9px] uppercase tracking-widest">
+    <div class="container mx-auto px-6">© 2026 MIYA ATTORNEYS PTY LTD. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const errorEl = document.getElementById('loginError');
+    
+    // Production: JWT auth only (no demo mode, no localStorage)
+    const TENANT_ID = 'miya-attorneys';
+    const API_BASE = 'http://localhost:3001';
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const btn = document.getElementById('loginBtn');
+
+      errorEl.classList.add('hidden');
+
+      if (!username || !password) {
+        errorEl.textContent = 'Please enter both username and password';
+        errorEl.classList.remove('hidden');
+        return;
+      }
+
+      try {
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+
+        const res = await fetch(`${API_BASE}/api/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password, tenantId: TENANT_ID })
+        });
+
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.token) throw new Error(data.error || 'Login failed');
+
+        // dashboard.html expects sessionStorage.adminToken
+        sessionStorage.setItem('adminToken', data.token);
+        window.location.href = 'admin-dashboard.html';
+      } catch (err) {
+        errorEl.textContent = err.message || 'Connection error. Please try again.';
+        errorEl.classList.remove('hidden');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Dashboard';
+      }
+    });
+  </script>
+</body>
+</html>

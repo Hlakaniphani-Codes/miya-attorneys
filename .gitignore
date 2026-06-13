@@ -1,0 +1,23 @@
+# Node
+node_modules/
+
+# OS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# Backend runtime artifacts
+backend/uploads/
+backend/data/database.sqlite
+
+# Logs
+*.log
+
+# Env files (if you add them later)
+.env
+.env.*
+
+# (Optional) macOS thumbnails
+**/.DS_Store
+

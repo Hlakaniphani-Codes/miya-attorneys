@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Miya Attorneys</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: { 50: '#FDFBF7', 100: '#F7F2E8', 200: '#EFE3CE', 500: '#DFB15B', 600: '#C59946', 700: '#9E7731' },
+            dark: { 800: '#222222', 900: '#111111', 950: '#0A0A0A' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #0A0A0A; font-family: 'Inter', sans-serif; }
+    .glass-card {
+      background: rgba(17, 17, 17, 0.96);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(199,162,82,0.25);
+      border-radius: 1rem;
+    }
+    .btn-gold {
+      background: #C7A252;
+      color: #0A0A0A;
+      font-weight: 800;
+      padding: 0.6rem 1.2rem;
+      border-radius: 0.6rem;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-gold:hover { filter: brightness(1.05); transform: translateY(-1px); }
+    .btn-outline {
+      border: 1px solid #C7A252;
+      color: #C7A252;
+      background: transparent;
+      padding: 0.6rem 1.2rem;
+      border-radius: 0.6rem;
+      transition: all 0.2s;
+      font-weight: 700;
+    }
+    .btn-outline:hover { background: #C7A252; color: #0A0A0A; }
+    .input-focus:focus { border-color: #C7A252; outline: none; box-shadow: 0 0 0 2px rgba(199,162,82,0.2); }
+  </style>
+</head>
+<body class="min-h-screen">
+
+  <header class="bg-dark-950/95 backdrop-blur-xl border-b border-gold-500/20 py-4 px-6 fixed top-0 w-full z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <i class="fas fa-scale-balanced text-gold-500 text-xl"></i>
+        <span class="font-serif text-xl font-bold text-white">MIYA ADMIN</span>
+      </div>
+      <button id="logoutBtn" class="text-gold-500 hover:text-gold-400"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </div>
+  </header>
+
+  <main class="pt-24 pb-16 px-6">
+    <div class="container mx-auto max-w-6xl">
+      <div class="flex gap-4 mb-8 border-b border-gray-800 pb-2">
+        <button onclick="showTab('blog')" id="tabBlog" class="px-4 py-2 text-gold-500 border-b-2 border-gold-500 font-semibold">📝 Blog Posts</button>
+        <button onclick="showTab('headlines')" id="tabHeadlines" class="px-4 py-2 text-gray-400 hover:text-gold-500 transition">🏷️ Headlines Manager</button>
+      </div>
+
+      <div id="blogTab">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="font-serif text-2xl font-bold text-white">Manage Blog Posts</h2>
+          <button onclick="openPostModal(null)" class="btn-gold"><i class="fas fa-plus mr-2"></i>New Post</button>
+        </div>
+        <div id="postsList" class="space-y-4"></div>
+      </div>
+
+      <div id="headlinesTab" class="hidden">
+        <h2 class="font-serif text-2xl font-bold text-white mb-6">Website Headlines Manager</h2>
+        <p class="text-gray-400 text-sm mb-6">Update any headline - changes appear instantly on the live website for all visitors.</p>
+        <div id="headlinesList" class="space-y-4"></div>
+        <button onclick="saveAllHeadlines()" class="btn-gold px-6 py-3 mt-6 w-full md:w-auto">Save All Headlines <i class="fas fa-save ml-2"></i></button>
+      </div>
+    </div>
+  </main>
+
+  <div id="postModal" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-6">
+    <div class="glass-card p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-serif text-xl font-bold text-white" id="modalTitle">New Blog Post</h3>
+        <button onclick="closePostModal()" class="text-gray-400 text-2xl">&times;</button>
+      </div>
+      <form id="postForm">
+        <input type="hidden" id="postId">
+
+        <div class="mb-4">
+          <label class="text-gold-500 text-xs font-semibold block mb-1">Title *</label>
+          <input type="text" id="postTitle" placeholder="Post Title" class="w-full bg-dark-800 border border-gray-700 rounded-lg p-3 text-white input-focus" required>
+        </div>
+
+        <div class="mb-4">
+          <label class="text-gold-500 text-xs font-semibold block mb-1">Category</label>
+          <input type="text" id="postCategory" placeholder="Category (e.g., Legal Insight, News)" class="w-full bg-dark-800 border border-gray-700 rounded-lg p-3 text-white input-focus">
+        </div>
+
+        <div class="mb-4">
+          <label class="text-gold-500 text-xs font-semibold block mb-1">Excerpt</label>
+          <textarea id="postExcerpt" rows="3" placeholder="Short excerpt" class="w-full bg-dark-800 border border-gray-700 rounded-lg p-3 text-white input-focus"></textarea>
+        </div>
+
+        <div class="mb-4">
+          <label class="text-gold-500 text-xs font-semibold block mb-1">Full Content (HTML allowed)</label>
+          <textarea id="postContent" rows="8" placeholder="Full content (HTML supported)" class="w-full bg-dark-800 border border-gray-700 rounded-lg p-3 text-white input-focus" required></textarea>
+        </div>
+
+        <div class="mb-4">
+          <label class="text-gold-500 text-xs font-semibold block mb-1">Author</label>
+          <input type="text" id="postAuthor" placeholder="Author name" class="w-full bg-dark-800 border border-gray-700 rounded-lg p-3 text-white input-focus" value="Miya Attorneys">
+        </div>
+
+        <div class="mb-4">
+          <label class="text-gold-500 text-xs font-semibold block mb-1">Optional image upload</label>
+          <input type="file" id="postImage" accept="image/*" class="w-full text-gray-300">
+        </div>
+
+        <div class="flex gap-3">
+          <button type="submit" class="btn-gold"><i class="fas fa-save"></i> Save Post</button>
+          <button type="button" onclick="closePostModal()" class="btn-outline">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const TENANT_ID = 'miya-attorneys';
+    const API_BASE = 'http://localhost:3001';
+
+    function getToken() {
+      return sessionStorage.getItem('adminToken');
+    }
+
+    function authHeaders() {
+      const token = getToken();
+      return { Authorization: `Bearer ${token}` };
+    }
+
+    function requireAuth() {
+      if (!getToken()) window.location.href = 'admin-login.html';
+    }
+    requireAuth();
+
+    const postsList = document.getElementById('postsList');
+    const headlinesList = document.getElementById('headlinesList');
+
+    let posts = [];
+    let headlines = {};
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      sessionStorage.removeItem('adminToken');
+      window.location.href = 'admin-login.html';
+    });
+
+    function showTab(tab) {
+      document.getElementById('blogTab').classList.toggle('hidden', tab !== 'blog');
+      document.getElementById('headlinesTab').classList.toggle('hidden', tab !== 'headlines');
+      document.getElementById('tabBlog').classList.toggle('text-gold-500', tab === 'blog');
+      document.getElementById('tabHeadlines').classList.toggle('text-gold-500', tab === 'headlines');
+      if (tab === 'headlines') loadHeadlines();
+    }
+
+    function openPostModal(post) {
+      document.getElementById('modalTitle').innerText = post ? 'Edit Post' : 'New Blog Post';
+      document.getElementById('postForm').reset();
+      document.getElementById('postId').value = post ? post.id : '';
+      document.getElementById('postTitle').value = post ? (post.title || '') : '';
+      document.getElementById('postCategory').value = post ? (post.category || '') : '';
+      document.getElementById('postExcerpt').value = post ? (post.excerpt || '') : '';
+      document.getElementById('postContent').value = post ? (post.contentHtml || '') : '';
+      document.getElementById('postAuthor').value = post ? (post.author || 'Miya Attorneys') : 'Miya Attorneys';
+      document.getElementById('postModal').classList.remove('hidden');
+      document.getElementById('postModal').style.display = 'flex';
+    }
+
+    function closePostModal() {
+      document.getElementById('postModal').classList.add('hidden');
+      document.getElementById('postModal').style.display = 'none';
+    }
+
+    async function loadPosts() {
+      postsList.innerHTML = '<div class="text-gray-400 text-sm">Loading...</div>';
+      const res = await fetch(`${API_BASE}/api/tenants/${TENANT_ID}/posts?take=50&skip=0`, { headers: authHeaders() });
+      if (!res.ok) {
+        postsList.innerHTML = '<div class="text-red-400 text-sm">Failed to load posts</div>';
+        return;
+      }
+      const data = await res.json();
+      // contentHtml is not returned on list. We'll keep what we need.
+      posts = (data.posts || []).map(p => ({
+        id: p.id,
+        title: p.title,
+        category: p.category,
+        excerpt: p.excerpt,
+        author: p.author,
+        publishedAt: p.publishedAt,
+        updatedAt: p.updatedAt,
+        date: p.publishedAt || p.updatedAt,
+        imageUrl: p.imageUrl,
+        contentHtml: ''
+      }));
+      renderPosts();
+    }
+
+    function renderPosts() {
+      if (!posts.length) {
+        postsList.innerHTML = '<div class="glass-card p-8 text-center text-gray-400">No blog posts yet.</div>';
+        return;
+      }
+
+      postsList.innerHTML = posts.map(post => `
+        <div class="glass-card p-5 rounded-xl flex justify-between items-start gap-4">
+          <div class="min-w-0">
+            <h3 class="font-bold text-white text-lg">${escapeHtml(post.title)}</h3>
+            <p class="text-gray-400 text-sm">${escapeHtml(post.category || 'General')} | ${new Date(post.date).toLocaleDateString()}</p>
+            <p class="text-gray-500 text-xs mt-1">${escapeHtml((post.excerpt || '').substring(0, 90))}</p>
+          </div>
+          <div class="flex gap-2 shrink-0">
+            <button class="text-gold-500 hover:text-gold-400" onclick="editPost('${post.id}')" title="Edit"><i class="fas fa-edit"></i></button>
+            <button class="text-red-500 hover:text-red-400" onclick="deletePost('${post.id}')" title="Delete"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    async function editPost(id) {
+      const res = await fetch(`${API_BASE}/api/tenants/${TENANT_ID}/posts/${encodeURIComponent(id)}`, { headers: authHeaders() });
+      const data = await res.json();
+      if (!res.ok) return alert(data.error || 'Failed');
+      openPostModal(data.post);
+      // ensure modal gets contentHtml
+      document.getElementById('postContent').value = data.post.contentHtml || '';
+    }
+
+    async function deletePost(id) {
+      if (!confirm('Delete this post permanently?')) return;
+      const res = await fetch(`${API_BASE}/api/tenants/${TENANT_ID}/posts/${encodeURIComponent(id)}`, {
+        method: 'DELETE',
+        headers: authHeaders()
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) return alert(data.error || 'Delete failed');
+      await loadPosts();
+    }
+
+    document.getElementById('postForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const postId = document.getElementById('postId').value;
+      const title = document.getElementById('postTitle').value.trim();
+      const category = document.getElementById('postCategory').value.trim();
+      const excerpt = document.getElementById('postExcerpt').value.trim();
+      const contentHtml = document.getElementById('postContent').value.trim();
+      const author = document.getElementById('postAuthor').value.trim();
+      const imageFile = document.getElementById('postImage').files[0] || null;
+
+      const formData = new FormData();
+      formData.append('title', title);
+      formData.append('category', category);
+      formData.append('excerpt', excerpt);
+      formData.append('contentHtml', contentHtml);
+      formData.append('author', author || 'Miya Attorneys');
+      formData.append('status', 'published');
+      if (imageFile) formData.append('image', imageFile);
+
+      const url = postId
+        ? `${API_BASE}/api/tenants/${TENANT_ID}/posts/${encodeURIComponent(postId)}`
+        : `${API_BASE}/api/tenants/${TENANT_ID}/posts`;
+
+      const method = postId ? 'PUT' : 'POST';
+
+      const res = await fetch(url, {
+        method,
+        headers: authHeaders(),
+        body: formData
+      });
+
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        alert(data.error || 'Save failed');
+        return;
+      }
+
+      closePostModal();
+      await loadPosts();
+    });
+
+    async function loadHeadlines() {
+      const res = await fetch(`${API_BASE}/api/tenants/${TENANT_ID}/headlines`, { headers: authHeaders() });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) return;
+      headlines = data.headlines || {
+        homeHero: 'Where <span class="text-gold-500">Justice</span> Meets Precision',
+        homeValues: 'Why Leading Corporations Trust Miya Attorneys'
+      };
+      renderHeadlines();
+    }
+
+    function renderHeadlines() {
+      if (!headlinesList) return;
+      const entries = Object.entries(headlines || {});
+      headlinesList.innerHTML = entries.map(([key, value]) => `
+        <div class="glass-card p-4 rounded-xl">
+          <label class="text-gold-500 text-sm font-semibold block mb-1">${key.replace(/([A-Z])/g, ' $1').trim()}</label>
+          <textarea data-key="${escapeAttr(key)}" rows="3" class="w-full bg-dark-800 border border-gray-700 rounded-lg p-2 text-white input-focus">${escapeHtml(value)}</textarea>
+        </div>
+      `).join('');
+    }
+
+    async function saveAllHeadlines() {
+      const textareas = document.querySelectorAll('#headlinesList textarea[data-key]');
+      const next = {};
+      textareas.forEach(t => {
+        next[t.dataset.key] = t.value;
+      });
+
+      const res = await fetch(`${API_BASE}/api/tenants/${TENANT_ID}/headlines`, {
+        method: 'PUT',
+        headers: { ...authHeaders(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({ headlines: next })
+      });
+
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) return alert(data.error || 'Failed to save');
+      alert('Headlines saved');
+    }
+
+    function escapeHtml(str) {
+      return String(str ?? '').replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '<', '>': '>' }[m]));
+    }
+
+    function escapeAttr(str) {
+      return String(str ?? '').replace(/"/g, '"');
+    }
+
+    function closePostModalOnClickOutside(e) {
+      const modal = document.getElementById('postModal');
+      if (e.target === modal) closePostModal();
+    }
+
+    document.getElementById('postModal').addEventListener('click', closePostModalOnClickOutside);
+
+    window.editPost = editPost;
+    window.deletePost = deletePost;
+    window.openPostModal = openPostModal;
+    window.closePostModal = closePostModal;
+    window.showTab = showTab;
+    window.saveAllHeadlines = saveAllHeadlines;
+
+    // initial
+    loadPosts();
+  </script>
+</body>
+</html>
+

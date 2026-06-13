@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>About Miya Attorneys | Boutique Law Firm | Your Legal Remedy</title>
+  <meta name="description" content="Miya Attorneys: A Level 1 BBBEE, wholly black-owned boutique law firm offering proactive legal solutions in Richards Bay, Gauteng & Mpumalanga.">
+
+  <!-- Google Fonts + Font Awesome + Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: { 50: '#FDFBF7', 100: '#F7F2E8', 200: '#EFE3CE', 500: '#DFB15B', 600: '#C59946', 700: '#9E7731' },
+            dark: { 800: '#222222', 900: '#111111', 950: '#0A0A0A' }
+          },
+          fontFamily: { serif: ['Cormorant Garamond', 'Georgia', 'serif'], sans: ['Montserrat', 'system-ui', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; background-color: #FFFFFF; color: #1F1F1F; }
+
+    /* Premium card hover effect */
+    .legal-frame {
+      border: 1px solid rgba(223, 177, 91, 0.35);
+      background-color: #FFFFFF;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 1rem;
+    }
+    .legal-frame:hover {
+      border-color: #DFB15B;
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    .hover-line { position: relative; }
+    .hover-line::after {
+      content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 2px;
+      bottom: -4px; left: 0; background-color: #DFB15B; transform-origin: bottom right;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hover-line:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed; top: 0; right: -100%; width: 300px; height: 100vh; background: #0A0A0A;
+      z-index: 1000; transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      border-left: 1px solid #C59946; padding: 2.5rem;
+    }
+    .mobile-menu.open { right: 0; }
+    .backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+      z-index: 999; opacity: 0; visibility: hidden; transition: 0.3s;
+    }
+    .backdrop.visible { opacity: 1; visibility: visible; }
+
+    /* Hover dropdown summaries (dark theme consistent with homepage) */
+    .nav-hover-dropdown {
+      position: fixed; background: #0A0A0A; border: 1px solid #C59946; border-top: 3px solid #DFB15B;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4); width: 290px; z-index: 10000;
+      transition: opacity 0.2s ease, transform 0.2s ease; opacity: 0; transform: translateY(10px);
+      pointer-events: none;
+    }
+    .nav-hover-dropdown.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .dropdown-inner { padding: 0.5rem 0; }
+    .dropdown-summary-item {
+      display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem 1.25rem;
+      transition: all 0.2s; border-left: 3px solid transparent; cursor: pointer; text-decoration: none;
+    }
+    .dropdown-summary-item:hover { background-color: #161616; border-left-color: #DFB15B; }
+    .dropdown-summary-item .item-icon { font-size: 0.85rem; color: #DFB15B; margin-top: 0.15rem; min-width: 20px; text-align: center; }
+    .dropdown-summary-item .item-title {
+      font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.75rem;
+      letter-spacing: 0.05em; text-transform: uppercase; color: #FFFFFF; margin-bottom: 0.15rem;
+    }
+    .dropdown-summary-item .item-desc { font-size: 0.7rem; line-height: 1.4; color: #A0A0A0; font-weight: 400; }
+    .dropdown-header {
+      padding: 0.85rem 1.25rem 0.4rem 1.25rem; border-bottom: 1px solid #222222;
+      font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; color: #DFB15B;
+    }
+
+    .section-divider { width: 50px; height: 2px; background: #DFB15B; margin: 1rem auto; border-radius: 2px; }
+    .value-pill {
+      background-color: #FFFFFF; border: 1px solid rgba(223, 177, 91, 0.3); padding: 0.4rem 0.9rem;
+      font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+      color: #1F1F1F; border-radius: 100px; transition: all 0.2s;
+    }
+    .value-pill:hover { background: rgba(223, 177, 91, 0.05); border-color: #DFB15B; transform: translateY(-1px); }
+
+    #backToTop {
+      position: fixed; bottom: 24px; right: 24px; z-index: 99; opacity: 0; visibility: hidden;
+      transition: 0.2s; background: #DFB15B; color: #1F1F1F; width: 40px; height: 40px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+    #backToTop.show { opacity: 1; visibility: visible; }
+
+    .hero-about {
+      background-image: url('about.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      position: relative;
+    }
+    .hero-about::before {
+      content: ''; position: absolute; inset: 0; background: rgba(10, 10, 10, 0.7); z-index: 0;
+    }
+    .hero-about > * { position: relative; z-index: 1; }
+  </style>
+</head>
+<body class="font-sans text-sm antialiased text-neutral-800 bg-white">
+
+<!-- Top Bar (mirroring homepage) -->
+<div class="bg-dark-950 border-b border-gold-600/30 text-white py-3 text-[11px] tracking-[0.2em] uppercase text-center font-medium px-4" id="heroTopBar">
+  Level 1 BBBEE Contributor &nbsp;|&nbsp; <span class="text-gold-500 font-semibold">Wholly Black Owned Firm</span> — Your Legal Remedy
+</div>
+
+
+<!-- Header / Navigation (consistent with contact and homepage) -->
+<header class="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200 transition-all duration-300">
+  <div class="container mx-auto px-6 lg:px-16 py-4 flex items-center justify-between">
+    <!-- Logo + brand (logo.jpeg) -->
+    <a href="index.html" class="flex items-center gap-3 group">
+      <img src="logo.jpeg" alt="MIYA ATTORNEYS Logo" class="h-14 w-auto object-contain drop-shadow-md" style="max-height: 3.75rem;">
+      <div class="flex flex-col">
+        <span class="font-serif text-2xl lg:text-3xl font-medium tracking-wide text-dark-900 group-hover:text-gold-600 transition-colors">MIYA ATTORNEYS</span>
+        <span class="text-[9px] uppercase tracking-[0.35em] text-gold-600 font-bold mt-0.5">Your Legal Remedy</span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation (pill style) -->
+    <nav class="hidden lg:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-600 border border-neutral-200 rounded-full px-8 py-3.5 bg-white shadow-sm">
+      <a href="index.html" class="hover-line hover:text-dark-900" data-nav-summary="home">Home</a>
+      <a href="about.html" class="text-dark-900 border-b-2 border-gold-500 pb-0.5" data-nav-summary="about">About</a>
+      <a href="services.html" class="hover-line hover:text-dark-900" data-nav-summary="practice">Practice Areas</a>
+      <a href="attorneys.html" class="hover-line hover:text-dark-900" data-nav-summary="attorneys">Attorneys</a>
+      <a href="blog.html" class="hover-line hover:text-dark-900" data-nav-summary="insights">Insights</a>
+      <a href="contact.html" class="hover-line hover:text-dark-900" data-nav-summary="contact">Contact</a>
+    </nav>
+
+    <!-- CTA Button -->
+    <div class="hidden lg:block">
+      <a href="contact.html" id="navBookBtn" class="bg-dark-900 hover:bg-gold-500 text-white hover:text-dark-900 font-bold tracking-widest uppercase text-[11px] px-6 py-3 transition-all duration-300 border border-transparent shadow-sm">
+        Request Consultation
+      </a>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button id="mobileMenuBtn" class="lg:hidden text-dark-900 focus:outline-none p-1">
+      <i class="fa-solid fa-bars-staggered text-xl"></i>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Drawer -->
+<div class="backdrop" id="menuBackdrop"></div>
+<div class="mobile-menu flex flex-col" id="sideMenu">
+  <div class="flex justify-between items-center pb-6 border-b border-neutral-800">
+    <span class="font-serif text-xl font-medium tracking-wide text-white">MIYA ATTORNEYS</span>
+    <button id="closeMenuBtn" class="text-neutral-400 hover:text-gold-500 text-3xl">&times;</button>
+  </div>
+  <nav class="flex flex-col gap-6 mt-10 text-sm font-semibold uppercase tracking-widest text-neutral-300">
+    <a href="index.html">Home</a>
+    <a href="about.html" class="text-gold-500">About Us</a>
+    <a href="services.html">Practice Areas</a>
+    <a href="attorneys.html">Our Attorneys</a>
+    <a href="blog.html">Insights</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+  <div class="mt-auto pt-6 border-t border-neutral-800 text-[11px] text-neutral-500 tracking-wider">
+    <p>© 2026 MIYA ATTORNEYS PTY LTD.</p>
+  </div>
+</div>
+
+<main>
+  <!-- Hero Section -->
+  <section class="hero-about relative py-28 md:py-32 text-center overflow-hidden">
+    <div class="container mx-auto px-6 lg:px-16 relative z-10">
+      <div class="inline-flex items-center gap-2 bg-gold-500/15 backdrop-blur-sm border border-gold-500/30 rounded-full px-5 py-1.5 mb-6">
+        <i class="fas fa-gavel text-gold-500 text-xs"></i>
+        <span class="text-gold-500 text-xs font-bold tracking-wider">SINCE 2015</span>
+      </div>
+      <h1 class="font-serif text-4xl md:text-6xl font-bold text-white">About <span class="text-gold-500">Miya Attorneys</span></h1>
+      <div class="section-divider mx-auto mt-5 bg-gold-500"></div>
+      <p class="text-gray-200 max-w-2xl mx-auto text-base font-light">A boutique law firm dedicated to providing exceptional legal services with integrity, innovation, and unwavering commitment to our clients.</p>
+    </div>
+  </section>
+
+  <!-- Who We Are Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6 lg:px-16">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <span class="text-gold-600 text-[11px] font-bold tracking-wider uppercase">Who We Are</span>
+          <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark-900 mt-2">A Legacy of <span class="text-gold-500">Legal Excellence</span></h2>
+          <div class="w-12 h-0.5 bg-gold-500 my-5 rounded-full"></div>
+          <p class="text-neutral-700 leading-relaxed mb-4 text-sm">Miya Attorneys is a boutique law firm providing legal services to a wide spectrum of private, public, and corporate entities. We have offices in <span class="text-gold-600 font-semibold">Richards Bay</span> and satellite offices in <span class="text-gold-600 font-semibold">Gauteng</span> and <span class="text-gold-600 font-semibold">Mpumalanga</span>, resulting in an extensive and wide ranging client base.</p>
+          <p class="text-neutral-700 leading-relaxed text-sm">Our values and philosophy is to render dedicated legal services to our clients. As a firm that provides legal solutions, we believe it is important to invest the time to thoroughly understand our clients and view our engagement as a <strong class="text-gold-600">partnership</strong>.</p>
+          <div class="mt-8 p-6 border-l-4 border-gold-500 bg-gold-50/40 rounded-r-xl">
+            <i class="fas fa-quote-left text-gold-500 text-2xl opacity-60 mb-3 block"></i>
+            <p class="text-neutral-700 italic text-sm">"The good lawyer is not the man who has an eye to every side and angle of contingency, but who throws himself on your part so heartily, that he can get you out of a scrape."</p>
+          </div>
+        </div>
+        <div>
+          <p class="text-neutral-700 leading-relaxed mb-4 text-sm"><strong class="text-gold-600">Setting us apart</strong> from most traditional legal service providers and law firms is the fact that our services are designed to be <strong class="text-gold-600">"fire preventing"</strong> rather than "fire fighting". We play an important role in risk identification, risk management, and risk minimisation.</p>
+          <p class="text-neutral-700 leading-relaxed text-sm">We have qualified and experienced professionals and can claim perfection in work through continuous struggle and hard work. We understand the legal philosophy and have human capital that is dynamic, adaptable, and conversant with most aspects of the law.</p>
+          <div class="mt-8 flex flex-wrap gap-2">
+            <span class="value-pill">Integrity</span><span class="value-pill">Honesty</span><span class="value-pill">Consistency</span>
+            <span class="value-pill">Reliability</span><span class="value-pill">Availability</span><span class="value-pill">Solutions Driven</span>
+            <span class="value-pill">Embrace Diversity</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision & Mission Cards -->
+  <section class="py-20 bg-neutral-50 border-t border-neutral-200">
+    <div class="container mx-auto px-6 lg:px-16">
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="legal-frame p-8 text-center shadow-sm">
+          <div class="w-16 h-16 rounded-full bg-gold-100 flex items-center justify-center mx-auto mb-5"><i class="fas fa-eye text-gold-600 text-2xl"></i></div>
+          <h3 class="font-serif text-2xl font-bold text-dark-900">Vision Statement</h3>
+          <div class="w-10 h-0.5 bg-gold-500 mx-auto my-3"></div>
+          <p class="text-neutral-600 text-sm leading-relaxed">To be a leading and most preferred legal resource in Africa with the ability to provide a wholly integrated high quality law service to all its clients through diligence, trust, mutual respect and enhancement of human potential.</p>
+        </div>
+        <div class="legal-frame p-8 text-center shadow-sm">
+          <div class="w-16 h-16 rounded-full bg-gold-100 flex items-center justify-center mx-auto mb-5"><i class="fas fa-bullseye text-gold-600 text-2xl"></i></div>
+          <h3 class="font-serif text-2xl font-bold text-dark-900">Mission Statement</h3>
+          <div class="w-10 h-0.5 bg-gold-500 mx-auto my-3"></div>
+          <p class="text-neutral-600 text-sm leading-relaxed">To provide quality legal solutions for our diverse clients. As a growing firm, we are committed to looking beyond the obvious. While we pay close attention to detail, we always consider the bigger picture.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Firm's Composition & Experience -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6 lg:px-16">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-gold-600 text-[11px] font-bold tracking-wider uppercase">Our Foundation</span>
+          <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark-900 mt-2">Firm's Composition & Experience</h2>
+          <div class="w-12 h-0.5 bg-gold-500 my-5 rounded-full"></div>
+          <p class="text-neutral-700 leading-relaxed text-sm"><strong class="text-gold-600">Miya Attorneys Pty Ltd</strong> was established in March 2015 by its female director and owner, <strong class="text-gold-600">Nokwazi B. Miya</strong>, through a wide range of experience in the legal services industry and the ability to manage and execute complex legal instructions and find innovative solutions to intricate legal problems.</p>
+          <p class="text-neutral-700 leading-relaxed mt-4 text-sm">With a base in KwaZulu-Natal, Gauteng, and Mpumalanga, we are able to deliver excellent professional services to meet our client's needs. The firm is <strong class="text-gold-600">wholly black owned</strong> and has <strong class="text-gold-600">Level One BBBEE</strong> procurement recognition.</p>
+          <div class="mt-8 p-5 border-l-4 border-gold-500 bg-gold-50/40 rounded-r-xl">
+            <i class="fas fa-quote-left text-gold-500 text-xl opacity-60 mb-2"></i>
+            <p class="text-neutral-700 italic text-sm">"Never be afraid to raise your voice for honesty and truth and compassion against injustice and lying and greed."</p>
+            <p class="text-gold-600 text-xs mt-2 font-semibold">— Nokwazi B. Miya, Founder & Director</p>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-xl border border-gold-200">
+          <img src="court.jpg" alt="Legal Professional Workspace" class="w-full h-[380px] object-cover transition-transform duration-700 hover:scale-105" style="filter: none;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Differentiator Cards -->
+  <section class="py-20 bg-neutral-50 border-t border-neutral-200">
+    <div class="container mx-auto px-6 lg:px-16">
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <span class="text-gold-600 text-[11px] font-bold tracking-wider uppercase">Our Differentiator</span>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark-900 mt-2">What Sets Us Apart</h2>
+        <div class="section-divider mx-auto mt-3"></div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="legal-frame p-6 text-center">
+          <i class="fas fa-fire-extinguisher text-gold-500 text-2xl mb-3"></i>
+          <h3 class="font-bold text-dark-900 text-lg">Proactive Legal Care</h3>
+          <p class="text-neutral-600 text-sm mt-1 leading-relaxed">We identify and manage legal risks before they become disputes — true preventive counsel.</p>
+        </div>
+        <div class="legal-frame p-6 text-center">
+          <i class="fas fa-handshake text-gold-500 text-2xl mb-3"></i>
+          <h3 class="font-bold text-dark-900 text-lg">Partnership Approach</h3>
+          <p class="text-neutral-600 text-sm mt-1 leading-relaxed">We invest time to understand your goals and work alongside you as strategic partners.</p>
+        </div>
+        <div class="legal-frame p-6 text-center">
+          <i class="fas fa-chart-line text-gold-500 text-2xl mb-3"></i>
+          <h3 class="font-bold text-dark-900 text-lg">Tailor Made Solutions</h3>
+          <p class="text-neutral-600 text-sm mt-1 leading-relaxed">Every client receives customised legal strategies, not off‑the‑shelf advice.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-24 bg-white">
+    <div class="container mx-auto px-6 lg:px-16 text-center">
+      <div class="max-w-2xl mx-auto border border-gold-200 bg-gold-50/30 p-10 md:p-14 rounded-2xl shadow-sm">
+        <i class="fas fa-gavel text-gold-500 text-3xl mb-4"></i>
+        <h3 class="font-serif text-3xl font-light text-dark-900 mb-4">Ready to Experience the <span class="text-gold-500">Miya Difference</span>?</h3>
+        <p class="text-neutral-700 font-medium text-sm max-w-md mx-auto mb-8 leading-relaxed">
+          Contact us today to schedule a confidential consultation with our experienced legal team.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 text-[11px] uppercase tracking-widest font-bold">
+          <a href="contact.html" class="bg-dark-900 hover:bg-gold-500 text-white px-8 py-3.5 transition-colors rounded-full shadow-md">
+            Schedule Consultation
+          </a>
+          <a href="services.html" class="border border-dark-900 text-dark-900 hover:bg-dark-900 hover:text-white px-8 py-3.5 transition-colors rounded-full">
+            Explore Practice Areas
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-dark-950 border-t border-neutral-900 text-neutral-400 py-16 text-center">
+  <div class="container mx-auto px-6 lg:px-16">
+    <div class="flex flex-wrap justify-center gap-10 mb-10 text-[11px] uppercase tracking-[0.25em] font-bold">
+      <a href="index.html" class="text-white hover:text-gold-500 transition-colors">Home</a>
+      <a href="about.html" class="text-gold-500">About</a>
+      <a href="services.html" class="hover:text-gold-500 transition-colors">Practice Areas</a>
+      <a href="attorneys.html" class="hover:text-gold-500 transition-colors">Attorneys</a>
+      <a href="blog.html" class="hover:text-gold-500 transition-colors">Insights</a>
+      <a href="contact.html" class="hover:text-gold-500 transition-colors">Contact</a>
+    </div>
+    <div class="w-16 h-px bg-neutral-800 mx-auto mb-8"></div>
+    <p class="text-[11px] text-neutral-500 uppercase tracking-widest font-medium leading-relaxed">© 2026 MIYA ATTORNEYS PTY LTD. All Rights Reserved. <br class="sm:hidden"> Your Legal Remedy.</p>
+  </div>
+</footer>
+
+<div id="backToTop"><i class="fas fa-arrow-up text-xs"></i></div>
+
+<script>
+  (function() {
+    // ========== LEVEL 1 BBBEE BAR TOAST (cross-page) ==========
+    const heroTopBar = document.getElementById('heroTopBar');
+    if(heroTopBar) {
+      // Remove bar after a short delay so user sees it briefly
+      setTimeout(() => {
+        heroTopBar.remove();
+      }, 3500);
+
+      // Inject/ensure the toast line appears under the hero area
+      const toastText = 'We are ready to serve your business today.';
+      // Add only once
+      if(!document.getElementById('heroAfterText')) {
+        const hero = document.querySelector('main');
+        const afterEl = document.createElement('p');
+        afterEl.id = 'heroAfterText';
+        afterEl.className = 'mt-6 text-white text-[11px] sm:text-xs uppercase tracking-[0.2em] font-bold text-center';
+        afterEl.setAttribute('aria-live','polite');
+        afterEl.textContent = toastText;
+        // Place it right after the hero section if possible
+        const heroSection = document.querySelector('main > section');
+        if(heroSection && heroSection.parentNode) {
+          heroSection.insertAdjacentElement('afterend', afterEl);
+        } else if(hero) {
+          hero.appendChild(afterEl);
+        }
+        // Only show after the bar disappears
+        afterEl.style.display = 'none';
+        setTimeout(() => {
+          afterEl.style.display = '';
+        }, 3500);
+      }
+    }
+
+    // ========== MOBILE MENU ==========
+
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const sideMenu = document.getElementById('sideMenu');
+    const backdrop = document.getElementById('menuBackdrop');
+    const closeBtn = document.getElementById('closeMenuBtn');
+    function openMenu() { sideMenu.classList.add('open'); backdrop.classList.add('visible'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { sideMenu.classList.remove('open'); backdrop.classList.remove('visible'); document.body.style.overflow = ''; }
+    if(mobileBtn) mobileBtn.addEventListener('click', openMenu);
+    if(closeBtn) closeBtn.addEventListener('click', closeMenu);
+    if(backdrop) backdrop.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && sideMenu.classList.contains('open')) closeMenu(); });
+
+    // ========== BACK TO TOP ==========
+    const backBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => backBtn.classList.toggle('show', window.scrollY > 500));
+    backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // ========== HOVER DROPDOWN SUMMARIES (same as homepage) ==========
+    const summaryMap = {
+      practice: { title: "⚖️ Core Practice Pillars", items: [{ icon: "fa-solid fa-landmark", title: "Constitutional & Public Law", desc: "Human rights, municipal law, regulatory review", link: "services.html#constitutional" },{ icon: "fa-solid fa-building", title: "Corporate & Commercial Law", desc: "Company formations, governance, PPPs", link: "services.html#corporate" },{ icon: "fa-solid fa-home", title: "Property & Land Rights", desc: "Evictions, transfers, conveyancing", link: "services.html#property" },{ icon: "fa-solid fa-briefcase", title: "Employment & Dispute Resolution", desc: "CCMA, labour court, litigation", link: "services.html#employment" }] },
+      about: { title: "🏛️ Firm Overview", items: [{ icon: "fa-solid fa-chart-line", title: "Our Heritage", desc: "15+ years championing legal transformation", link: "about.html#leadership" },{ icon: "fa-solid fa-scale-balanced", title: "Mission & Values", desc: "Integrity, access & excellence", link: "about.html#vision-mission" },{ icon: "fa-solid fa-users", title: "Leadership", desc: "Nokwazi Miya & senior counsel", link: "about.html#leadership" },{ icon: "fa-solid fa-handshake", title: "BBBEE & Transformation", desc: "Level 1 Contributor, wholly black owned", link: "about.html#composition" }] },
+      attorneys: { title: "👥 Our Legal Team", items: [{ icon: "fa-solid fa-user-tie", title: "Founder & Director", desc: "Nokwazi B. Miya – visionary leader", link: "attorneys.html#founder" },{ icon: "fa-solid fa-gavel", title: "Senior Counsel", desc: "Experienced litigators & advisors", link: "attorneys.html#team" },{ icon: "fa-solid fa-chalkboard-user", title: "Practice Group Leads", desc: "Specialised department heads", link: "attorneys.html#advisory" },{ icon: "fa-solid fa-scale-balanced", title: "Legal Advisory", desc: "Strategic case assessment & support", link: "attorneys.html#advisory" }] },
+      insights: { title: "📘 Legal Intelligence", items: [{ icon: "fa-solid fa-newspaper", title: "Recent Publications", desc: "Constitutional & corporate updates", link: "blog.html#featured" },{ icon: "fa-solid fa-chart-simple", title: "Case Studies", desc: "Landmark litigation wins", link: "blog.html#blog-grid" },{ icon: "fa-solid fa-bell", title: "Legal Alerts", desc: "Regulatory changes", link: "blog.html#subscribe" },{ icon: "fa-solid fa-book-open", title: "White Papers", desc: "Legislative drafting insights", link: "blog.html#blog-grid" }] },
+      contact: { title: "📞 Connect With Us", items: [{ icon: "fa-solid fa-location-dot", title: "Richards Bay HQ", desc: "Unit 2 Palm Court, CBD", link: "contact.html#locations" },{ icon: "fa-solid fa-building", title: "Gauteng Office", desc: "Johannesburg (by appointment)", link: "contact.html#locations" },{ icon: "fa-regular fa-envelope", title: "Direct Counsel", desc: "counsel@miyaattorneys.com", link: "contact.html#contact-form" },{ icon: "fa-regular fa-calendar", title: "Schedule Consultation", desc: "Priority legal review", link: "contact.html#contact-form" }] },
+      home: { title: "🏠 Firm Highlights", items: [{ icon: "fa-solid fa-crown", title: "Founder's Vision", desc: "Nokwazi Miya's leadership", link: "index.html#leadership-message" },{ icon: "fa-solid fa-chart-line", title: "Operational Excellence", desc: "98% success record", link: "index.html#stats" },{ icon: "fa-solid fa-scale-balanced", title: "Constitutional Specialism", desc: "Administrative justice", link: "index.html#expertise" },{ icon: "fa-regular fa-message", title: "Client Testimonials", desc: "Infrastructure landmark win", link: "index.html#testimonial" }] }
+    };
+
+    function getSummaryKey(linkElement) {
+      const href = linkElement.getAttribute('href') || '';
+      const text = linkElement.textContent.trim().toLowerCase();
+      if (href.includes('services') || text === 'practice areas') return 'practice';
+      if (href.includes('about')) return 'about';
+      if (href.includes('attorneys')) return 'attorneys';
+      if (href.includes('blog')) return 'insights';
+      if (href.includes('contact')) return 'contact';
+      return 'home';
+    }
+
+    let activeDropdown = null, hideTimeout = null;
+    function removeDropdown() { if(activeDropdown && activeDropdown.parentNode) activeDropdown.remove(); activeDropdown = null; }
+    function createDropdown(link, data) {
+      removeDropdown(); const div = document.createElement('div'); div.className = 'nav-hover-dropdown';
+      div.innerHTML = `<div class="dropdown-header">${data.title}</div><div class="dropdown-inner"></div>`;
+      const inner = div.querySelector('.dropdown-inner');
+      data.items.forEach(item => { const a = document.createElement('a'); a.className = 'dropdown-summary-item'; a.href = item.link; a.innerHTML = `<div class="item-icon"><i class="${item.icon}"></i></div><div class="item-content"><div class="item-title">${item.title}</div><div class="item-desc">${item.desc}</div></div>`; inner.appendChild(a); });
+      document.body.appendChild(div);
+      const rect = link.getBoundingClientRect(); div.style.top = (rect.bottom + window.scrollY + 12) + 'px'; div.style.left = (rect.left + window.scrollX - 20) + 'px';
+      div.classList.add('active'); activeDropdown = div;
+      div.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
+      div.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => { if(activeDropdown === div) removeDropdown(); }, 150); });
+    }
+
+    const navLinks = document.querySelectorAll('nav.hidden.lg\\:flex a');
+    navLinks.forEach(link => {
+      const key = getSummaryKey(link); if(!summaryMap[key]) return;
+      link.addEventListener('mouseenter', () => { if(hideTimeout) clearTimeout(hideTimeout); createDropdown(link, summaryMap[key]); });
+      link.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => removeDropdown(), 150); });
+    });
+    window.addEventListener('scroll', () => removeDropdown());
+    window.addEventListener('resize', () => removeDropdown());
+
+    // ========== STICKY HEADER HIDE/SHOW ==========
+    let lastScroll = 0;
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      const cur = window.scrollY;
+      if (cur > lastScroll && cur > 100) header.style.transform = 'translateY(-100%)';
+      else if (cur < lastScroll) header.style.transform = 'translateY(0)';
+      lastScroll = cur;
+    });
+  })();
+</script>
+</body>
+</html>
