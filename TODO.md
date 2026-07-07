@@ -1,6 +1,24 @@
-- [ ] Update index.html: replace dummy “Recent Regulatory Publications” cards with a dynamic grid container
-- [ ] Add JS to index.html: fetch latest published posts from backend endpoint and render latest 3
-- [ ] Ensure card links go to blog-post.html?id=POST_ID and show real title/excerpt/date/image
-- [ ] Add loading/empty states (optional, minimal)
-- [ ] Smoke test by running backend and opening index.html in browser
+# Miya Attorneys - Requested Main Page Amendments
 
+- [x] Update `index.html` Home header:
+  - [ ] Reduce logo size
+  - [ ] Update nav labels and spacing: HOME / ABOUT US / PRACTICE AREAS / ATTORNEYS / INSIGHTS / CONTACT US
+  - [ ] Ensure tagline is **Your legal remedy**
+  - [ ] Update hero subheading line to: **Protecting Rights. Managing Risk. Delivering Results.**
+  - [ ] Replace hero paragraph with provided South Africa strategic description
+- [x] Update hero CTA text to: **Book a Consultation | Explore Our Services**
+- [ ] Update hero background to a single building image (use one background file; keep optional moving via existing slideshow logic if present)
+- [ ] Update Home “Page 1” section:
+  - [ ] Replace heading with **A Message from Our Founder**
+  - [ ] Ensure founder photo present (use existing image slot)
+  - [ ] Replace founder paragraph content with provided wording
+- [ ] Update Home “Page 1” second block:
+  - [ ] Replace current cards section with **Why Clients Choose Miya Attorneys?**
+  - [ ] Add 6 icon items with the requested text
+- [x] Update (later) other pages as needed for navigation anchors:
+  - [ ] about.html sections for “About Miya Attorneys”
+  - [ ] services/practice area anchors
+  - [ ] attorneys.html additions
+  - [ ] contact.html HQ address update
+- [ ] Verify dropdown hover summaries still map correctly after nav label changes
+- [ ] Run quick local validation (open in browser)
