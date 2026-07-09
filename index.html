@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>MIYA ATTORNEYS | Premier Constitutional & Corporate Counsel</title>
   
-  <!-- Preconnect to elegant editorial fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <script src="https://cdn.tailwindcss.com"></script>
@@ -19,19 +17,8 @@
       theme: {
         extend: {
           colors: {
-            gold: { 
-              50: '#FDFBF7', 
-              100: '#F7F2E8', 
-              200: '#EFE3CE', 
-              500: '#DFB15B', 
-              600: '#C59946', 
-              700: '#9E7731' 
-            },
-            dark: {
-              800: '#222222',
-              900: '#111111',
-              950: '#0A0A0A'
-            }
+            gold: { 50: '#FDFBF7', 100: '#F7F2E8', 200: '#EFE3CE', 500: '#DFB15B', 600: '#C59946', 700: '#9E7731' },
+            dark: { 800: '#222222', 900: '#111111', 950: '#0A0A0A' }
           },
           fontFamily: {
             serif: ['Cormorant Garamond', 'Georgia', 'serif'],
@@ -45,7 +32,6 @@
     html { scroll-behavior: smooth; }
     body { -webkit-font-smoothing: antialiased; background-color: #FFFFFF; color: #1F1F1F; }
     
-    /* Premium legal frame - dynamic dark hover state */
     .legal-frame {
       border: 1px solid rgba(223, 177, 91, 0.25);
       background-color: #FFFFFF;
@@ -61,7 +47,6 @@
     .legal-frame:hover p { color: #CCCCCC !important; }
     .legal-frame:hover .icon-box { background-color: #1A1A1A !important; border-color: #DFB15B !important; }
     
-    /* Underline animation for navigation — gold signature */
     .hover-line {
       position: relative;
     }
@@ -82,7 +67,6 @@
       transform-origin: bottom left;
     }
 
-    /* Hero slideshow – fixed fading transition */
     .hero-slideshow { 
       position: relative; 
       overflow: hidden; 
@@ -102,7 +86,6 @@
       opacity: 1;
     }
     
-    /* Rich dynamic overlay gradient to balance structural readability */
     .hero-overlay {
       position: absolute;
       inset: 0;
@@ -111,7 +94,6 @@
       pointer-events: none;
     }
     
-    /* Mobile menu – clean monochrome rich black palette */
     .mobile-menu { 
       position: fixed; top: 0; right: -100%; width: 300px; height: 100vh; background: #0A0A0A; 
       z-index: 1000; transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
@@ -124,13 +106,11 @@
     }
     .backdrop.visible { opacity: 1; visibility: visible; }
     
-    /* Image rendering enhancements */
     img, .slide-bg {
       image-rendering: crisp-edges;
       image-rendering: -webkit-optimize-contrast;
     }
 
-    /* Hover dropdown summary layouts */
     .nav-hover-dropdown {
       position: fixed;
       background: #0A0A0A;
@@ -149,9 +129,7 @@
       transform: translateY(0);
       pointer-events: auto;
     }
-    .dropdown-inner {
-      padding: 0.5rem 0;
-    }
+    .dropdown-inner { padding: 0.5rem 0; }
     .dropdown-summary-item {
       display: flex;
       align-items: flex-start;
@@ -197,52 +175,67 @@
       font-weight: 700;
       color: #DFB15B;
     }
+
+    .check-list-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .check-list-item:last-child { border-bottom: none; }
+    .check-list-item i {
+      color: #DFB15B;
+      font-size: 1rem;
+      width: 1.25rem;
+      text-align: center;
+    }
+    .check-list-item span {
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: #E5E5E5;
+    }
   </style>
 </head>
 <body class="font-sans text-sm antialiased text-neutral-800 bg-white">
 
-<!-- Top Bar — Pure corporate dark mode statement -->
-<div class="bg-dark-950 border-b border-gold-600/30 text-white py-3 text-[11px] tracking-[0.2em] uppercase text-center font-medium px-4 heroHideOnSlide" id="heroTopBar">
+<!-- Top Bar -->
+<div class="bg-dark-950 border-b border-gold-600/30 text-white py-3 text-[11px] tracking-[0.2em] uppercase text-center font-medium px-4" id="heroTopBar">
 Level 1 BBBEE Contributor &nbsp;|&nbsp; <span class="text-gold-500 font-semibold">Wholly Black Owned Firm</span>  Your Legal Remedy
 </div>
 
-<!-- Navigation -->
+<!-- Navigation – reduced size -->
 <header class="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200 transition-all duration-300">
-  <div class="container mx-auto px-6 lg:px-16 py-4 flex items-center justify-between">
-    
-    <!-- Logo + brand text (using logo.jpeg) -->
-    <a href="index.html" class="flex items-center gap-4 group">
+  <div class="container mx-auto px-6 lg:px-16 py-3 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3 group">
       <div class="relative flex items-center justify-center">
-        <img src="logo.jpeg" alt="MIYA ATTORNEYS Logo" class="h-14 w-auto object-contain drop-shadow-md" style="max-height: 3.75rem;">
+        <img src="logo.jpeg" alt="MIYA ATTORNEYS Logo" class="h-10 w-auto object-contain drop-shadow-md">
         <span class="pointer-events-none absolute -inset-1.5 rounded-full border border-gold-500/40" aria-hidden="true"></span>
       </div>
       <div class="flex flex-col">
-        <span class="font-serif text-2xl lg:text-3xl font-medium tracking-wide text-dark-900 group-hover:text-gold-600 transition-colors">MIYA ATTORNEYS</span>
-        <span class="text-[9px] uppercase tracking-[0.35em] text-gold-600 font-bold mt-0.5">Your Legal Remedy</span>
+        <span class="font-serif text-xl lg:text-2xl font-medium tracking-wide text-dark-900 group-hover:text-gold-600 transition-colors">MIYA ATTORNEYS</span>
+        <span class="text-[8px] uppercase tracking-[0.35em] text-gold-600 font-bold mt-0.5">Your Legal Remedy</span>
       </div>
     </a>
 
-    <!-- Clean Corporate Floating Nav Menu Bar -->
-    <nav class="hidden lg:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-600 border border-neutral-200 rounded-full px-8 py-3.5 bg-white shadow-sm">
+    <nav class="hidden lg:flex items-center gap-6 text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-600 border border-neutral-200 rounded-full px-5 py-2.5 bg-white shadow-sm">
       <a href="index.html" class="text-dark-900 border-b-2 border-gold-500 pb-0.5" data-nav-summary="home">Home</a>
       <a href="about.html" class="hover-line transition-colors hover:text-dark-900" data-nav-summary="about">About</a>
       <a href="services.html" class="hover-line transition-colors hover:text-dark-900" data-nav-summary="practice">Practice Areas</a>
       <a href="attorneys.html" class="hover-line transition-colors hover:text-dark-900" data-nav-summary="attorneys">Attorneys</a>
       <a href="blog.html" class="hover-line transition-colors hover:text-dark-900" data-nav-summary="insights">Insights</a>
       <a href="contact.html" class="hover-line transition-colors hover:text-dark-900" data-nav-summary="contact">Contact</a>
-      <a href="admin-login.html" class="ml-2 inline-flex items-center justify-center w-10 h-10 rounded-full border border-gold-500/30 hover:border-gold-500 bg-white hover:bg-gold-50 text-gold-600 transition" aria-label="Admin Login" title="Admin Login">
-        <i class="fa-solid fa-user-secret text-sm"></i>
+      <a href="admin-login.html" class="ml-2 inline-flex items-center justify-center w-8 h-8 rounded-full border border-gold-500/30 hover:border-gold-500 bg-white hover:bg-gold-50 text-gold-600 transition" aria-label="Admin Login" title="Admin Login">
+        <i class="fa-solid fa-user-secret text-xs"></i>
       </a>
     </nav>
 
-    <!-- Navigation CTA -->
     <div class="hidden lg:block">
-      <a href="contact.html" id="navBookBtn" class="bg-dark-900 hover:bg-gold-500 text-white hover:text-dark-900 font-bold tracking-widest uppercase text-[11px] px-6 py-3 transition-all duration-300 border border-transparent shadow-sm">
+      <a href="contact.html" id="navBookBtn" class="bg-dark-900 hover:bg-gold-500 text-white hover:text-dark-900 font-bold tracking-widest uppercase text-[10px] px-4 py-2 transition-all duration-300 border border-transparent shadow-sm">
         Request Consultation
       </a>
     </div>
 
-    <!-- Mobile Button Toggle -->
     <button id="mobileMenuBtn" class="lg:hidden text-dark-900 focus:outline-none p-1">
       <i class="fa-solid fa-bars-staggered text-xl"></i>
     </button>
@@ -265,7 +258,6 @@ Level 1 BBBEE Contributor &nbsp;|&nbsp; <span class="text-gold-500 font-semibold
     <a href="contact.html" class="hover:text-white transition-colors">Contact Us</a>
     <a href="admin-login.html" class="hover:text-white transition-colors" style="border-top:1px solid rgba(197,153,70,0.25); padding-top:1rem;">Admin Login</a>
   </nav>
-
   <div class="mt-auto pt-6 border-t border-neutral-800 text-[11px] text-neutral-500 tracking-wider">
     <p>© 2026 MIYA ATTORNEYS PTY LTD.</p>
   </div>
@@ -273,27 +265,33 @@ Level 1 BBBEE Contributor &nbsp;|&nbsp; <span class="text-gold-500 font-semibold
 
 <main>
   
-  <!-- Hero Section – Fixed looping slideshow -->
+  <!-- Hero Section -->
   <section class="hero-slideshow relative flex items-center justify-center">
-    <!-- Background slides -->
-    <div class="slide-bg slide-1 active" style="background-image: url('miya3.jpg');"></div>
+    <!-- All slides use miya4.jpg -->
+    <div class="slide-bg slide-1 active" style="background-image: url('miya4.jpg');"></div>
     <div class="slide-bg slide-2" style="background-image: url('miya4.jpg');"></div>
-    <div class="slide-bg slide-3" style="background-image: url('law.jpg');"></div>
+    <div class="slide-bg slide-3" style="background-image: url('miya4.jpg');"></div>
     
     <div class="hero-overlay"></div>
     
     <div class="container mx-auto px-6 lg:px-16 relative z-10 text-center max-w-4xl">
 
-      <h1 class="font-serif text-2xl sm:text-3xl md:text-4xl text-gold-500 font-light tracking-wide leading-tight mb-5">
-        <span id="heroLine1">Commanding Legal Clarity.</span>
+      <!-- GOLD HEADLINE – smaller size -->
+      <h1 id="heroLine1" class="font-serif text-xl sm:text-2xl md:text-3xl text-gold-500 font-light tracking-wide leading-tight mb-5">
+        Protecting Rights. Managing Risk. Delivering Results.
       </h1>
-      <p class="mt-1 text-neutral-200 text-[10px] sm:text-xs uppercase tracking-[0.35em] font-bold" aria-live="polite">
-        <span id="heroRotator">Securing Enterprise Trajectories.</span>
+      
+      <!-- ORIGINAL ROTATOR TEXT (shows on slide 1) -->
+      <p id="heroRotator" class="mt-1 text-neutral-200 text-[10px] sm:text-xs uppercase tracking-[0.35em] font-bold" aria-live="polite">
+        Strategic legal solutions for individuals, businesses, public institutions and corporate clients across South Africa.
       </p>
-      <p id="heroAfterText" class="hidden mt-3 text-white text-[11px] sm:text-xs uppercase tracking-[0.2em] font-bold" aria-live="polite"></p>
+
+      <!-- REPLACEMENT TEXT (shows on slide 2+) – SAME STYLING as above -->
+      <p id="heroAfterText" class="hidden mt-1 text-neutral-200 text-[10px] sm:text-xs uppercase tracking-[0.35em] font-bold" aria-live="polite">
+        We combine legal excellence with practical insight to help our clients navigate complexity, minimise legal risk and achieve lasting success.
+      </p>
 
       <div class="flex flex-wrap justify-center gap-5 text-[11px] uppercase tracking-widest font-bold mt-6">
-
         <a href="contact.html" id="bookBtn" class="bg-gold-500 hover:bg-white text-dark-950 px-8 py-4 transition-colors shadow-xl inline-flex items-center gap-3">
           Book Appointment <i class="fa-solid fa-arrow-right-long text-[10px]"></i>
         </a>
@@ -315,9 +313,9 @@ Level 1 BBBEE Contributor &nbsp;|&nbsp; <span class="text-gold-500 font-semibold
           </h2>
           <div class="w-16 h-[2px] bg-gold-500 my-4"></div>
           <div class="font-serif text-lg md:text-xl italic text-neutral-700 leading-relaxed space-y-6">
-            <p>I founded <span class="font-bold text-dark-900 not-italic">MIYA ATTORNEYS</span> with the goal of providing competent, compassionate and creative solutions to everyday legal needs.</p>
-            <p>Too often legal services are recommended or rendered that weren't necessary, costing you or your business time and money. At <span class="font-bold text-dark-900 not-italic">MIYA ATTORNEYS</span>, we only provide the services necessary to accomplish your legal goals.</p>
-            <p class="font-semibold text-gold-700 not-italic">You, your family, or your business will always be our top priority.</p>
+            <p><span class="font-bold text-dark-900 not-italic">MIYA ATTORNEYS</span> was founded in 2015 with a vision to build a law firm that delivers more than legal advice—a firm that becomes a trusted partner in helping clients navigate legal challenges, manage risk and achieve lasting success.</p>
+            <p>Throughout my legal career, I witnessed how timely, strategic legal advice could prevent disputes, protect rights and create opportunities. Those experiences inspired me to establish a firm that focuses on practical, solution-driven legal services tailored to each client's unique needs.</p>
+            <p class="font-semibold text-gold-700 not-italic">Our philosophy is founded on a simple belief “justice has little meaning if it is accessible only to the powerful”.</p>
           </div>
           <div class="pt-4 flex items-center gap-4">
             <span class="w-12 h-px bg-neutral-300"></span>
@@ -325,7 +323,6 @@ Level 1 BBBEE Contributor &nbsp;|&nbsp; <span class="text-gold-500 font-semibold
           </div>
         </div>
         
-        <!-- Premium Framed Profile Card -->
         <div class="lg:col-span-5 relative flex justify-center">
           <div class="p-4 bg-white border border-neutral-200 shadow-xl max-w-sm w-full relative group">
             <div class="absolute -inset-1 border border-gold-500/30 pointer-events-none group-hover:border-gold-500/70 transition-colors duration-300"></div>
@@ -336,6 +333,24 @@ Level 1 BBBEE Contributor &nbsp;|&nbsp; <span class="text-gold-500 font-semibold
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Clients Choose Miya Attorneys? -->
+  <section class="py-16 bg-dark-950 border-t border-b border-gold-600/20">
+    <div class="container mx-auto px-6 lg:px-16">
+      <div class="text-center mb-12">
+        <h3 class="font-serif text-3xl md:text-4xl font-light text-white">Why Clients Choose Miya Attorneys?</h3>
+        <div class="w-16 h-px bg-gold-500 mx-auto mt-4"></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-x-12 gap-y-2 max-w-3xl mx-auto">
+        <div class="check-list-item"><i class="fas fa-check-circle"></i><span>Strategic Legal Advice</span></div>
+        <div class="check-list-item"><i class="fas fa-check-circle"></i><span>Proactive Risk Management</span></div>
+        <div class="check-list-item"><i class="fas fa-check-circle"></i><span>Trusted Partnerships</span></div>
+        <div class="check-list-item"><i class="fas fa-check-circle"></i><span>National Footprint</span></div>
+        <div class="check-list-item"><i class="fas fa-check-circle"></i><span>Level 1 B-BBEE</span></div>
+        <div class="check-list-item"><i class="fas fa-check-circle"></i><span>Public & Private Sector Expertise</span></div>
       </div>
     </div>
   </section>
@@ -418,24 +433,18 @@ Level 1 BBBEE Contributor &nbsp;|&nbsp; <span class="text-gold-500 font-semibold
     </div>
   </section>
 
-  <!-- Blog Posts Placeholder -->
+  <!-- Blog Posts -->
   <section class="py-24 bg-neutral-50 border-t border-neutral-200">
     <div class="container mx-auto px-6 lg:px-16">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
         <div><span class="text-[11px] uppercase font-bold tracking-[0.25em] text-gold-600">Analytic Intelligence</span><h3 class="font-serif text-3xl font-light text-dark-900 mt-2">Recent Regulatory Publications</h3></div>
         <div class="mt-4 md:mt-0"><a href="blog.html" class="text-[11px] uppercase font-bold tracking-widest text-gold-700 hover:text-dark-900 transition-colors border-b-2 border-gold-500 pb-1">View All Insights</a></div>
       </div>
-
       <div id="homeNewsLoading" class="text-center text-sm text-neutral-500">Loading latest insights...</div>
-      <div id="homeNewsEmpty" class="text-center hidden">
-        <i class="fas fa-newspaper text-gold-500 text-4xl mb-3 opacity-50"></i>
-        <p class="text-gray-500 text-sm">No published posts found.</p>
-      </div>
-
+      <div id="homeNewsEmpty" class="text-center hidden"><i class="fas fa-newspaper text-gold-500 text-4xl mb-3 opacity-50"></i><p class="text-gray-500 text-sm">No published posts found.</p></div>
       <div id="homeNewsGrid" class="grid md:grid-cols-3 gap-8"></div>
     </div>
   </section>
-
 
   <!-- Testimonial -->
   <section class="py-24 bg-dark-900 border-t border-b border-gold-600/30 text-center text-white relative overflow-hidden">
@@ -476,12 +485,9 @@ Level 1 BBBEE Contributor &nbsp;|&nbsp; <span class="text-gold-500 font-semibold
 
 <script>
   (function() {
-    // ========== HOME BLOG WIDGET (dynamic) ==========
+    // ========== HOME BLOG WIDGET ==========
     const escapeHtml = (str) => {
       return String(str ?? '').replace(/[&<>]/g, (m) => ({ '&': '&amp;', '<': '<', '>': '>' }[m]));
-    };
-    const escapeAttr = (str) => {
-      return String(str ?? '').replace(/\"/g, '"');
     };
 
     async function loadHomeNews() {
@@ -494,7 +500,7 @@ Level 1 BBBEE Contributor &nbsp;|&nbsp; <span class="text-gold-500 font-semibold
         if (loadingEl) loadingEl.style.display = 'block';
         if (emptyEl) emptyEl.classList.add('hidden');
 
-const res = await fetch(`${window.__API_BASE__ || 'https://miya-attorneys.onrender.com'}/api/tenants/miya-attorneys/posts?take=3&skip=0`);
+        const res = await fetch(`${window.__API_BASE__ || 'https://miya-attorneys.onrender.com'}/api/tenants/miya-attorneys/posts?take=3&skip=0`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         const posts = (data.posts || []).map(p => ({
@@ -507,7 +513,6 @@ const res = await fetch(`${window.__API_BASE__ || 'https://miya-attorneys.onrend
         }));
 
         gridEl.innerHTML = posts.map(p => {
-          const img = p.imageUrl || 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&auto=format';
           const dateStr = p.date ? new Date(p.date).toLocaleDateString() : '';
           return `
             <div class="bg-white p-6 border border-neutral-200 hover:border-gold-500 transition-colors duration-300">
@@ -521,9 +526,8 @@ const res = await fetch(`${window.__API_BASE__ || 'https://miya-attorneys.onrend
                   <div class="flex items-center gap-3 mt-3">
                     ${dateStr ? `<span class="text-[10px] uppercase tracking-[0.15em] font-bold text-neutral-400">${escapeHtml(dateStr)}</span>` : ''}
                     <a href="blog-post.html?id=${encodeURIComponent(p.id)}" class="text-gold-600 text-[10px] uppercase inline-flex items-center gap-2 hover:text-dark-900 transition-colors font-bold">
-Read full article →
+                      Read full article →
                     </a>
-
                   </div>
                 </div>
               </div>
@@ -540,7 +544,6 @@ Read full article →
         if (gridEl) gridEl.innerHTML = '';
         if (emptyEl) {
           emptyEl.classList.remove('hidden');
-          emptyEl.querySelector('p')?.setAttribute('style', 'color: #b45309;');
           emptyEl.innerHTML = '<i class="fas fa-newspaper text-gold-500 text-4xl mb-3 opacity-50"></i><p class="text-sm text-gold-700">Unable to load insights right now.</p>';
         }
       } finally {
@@ -550,7 +553,7 @@ Read full article →
 
     loadHomeNews();
 
-    // ========== HOVER DROPDOWN SUMMARIES (same as working version) ==========
+    // ========== HOVER DROPDOWN SUMMARIES ==========
     const summaryMap = {
       practice: { title: "⚖️ Core Practice Pillars", items: [{ icon: "fa-solid fa-landmark", title: "Constitutional & Public Law", desc: "Human rights, municipal law, regulatory review", link: "services.html#constitutional" },{ icon: "fa-solid fa-building", title: "Corporate & Commercial Law", desc: "Company formations, governance, PPPs", link: "services.html#corporate" },{ icon: "fa-solid fa-home", title: "Property & Land Rights", desc: "Evictions, transfers, conveyancing", link: "services.html#property" },{ icon: "fa-solid fa-briefcase", title: "Employment & Dispute Resolution", desc: "CCMA, labour court, litigation", link: "services.html#employment" }] },
       about: { title: "🏛️ Firm Overview", items: [{ icon: "fa-solid fa-chart-line", title: "Our Heritage", desc: "15+ years championing legal transformation", link: "about.html#leadership" },{ icon: "fa-solid fa-scale-balanced", title: "Mission & Values", desc: "Integrity, access & excellence", link: "about.html#vision-mission" },{ icon: "fa-solid fa-users", title: "Leadership", desc: "Nokwazi Miya & senior counsel", link: "about.html#leadership" },{ icon: "fa-solid fa-handshake", title: "BBBEE & Transformation", desc: "Level 1 Contributor, wholly black owned", link: "about.html#composition" }] },
@@ -603,42 +606,29 @@ Read full article →
     if(backdrop) backdrop.addEventListener('click', closeMenu);
     document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && sideMenu.classList.contains('open')) closeMenu(); });
 
-    // ========== LOOPING SLIDESHOW (fixed) ==========
+    // ========== LOOPING SLIDESHOW ==========
     const slides = document.querySelectorAll('.slide-bg');
     let currentSlide = 0;
 
-    // Hero text rotator synced with the slideshow (same cadence)
-    const rotatorEl = document.getElementById('heroRotator');
     const heroLine1 = document.getElementById('heroLine1');
-    const rotatorLines = [
-      'Securing Enterprise Trajectories.',
-      'Commanding Legal Clarity.',
-      'Protecting Corporate Continuity.'
-    ];
-    let currentLine = 0;
-
-    function showRotatorLine(i) {
-      if(!rotatorEl) return;
-      rotatorEl.textContent = rotatorLines[i % rotatorLines.length];
-    }
-
-    if(rotatorEl) showRotatorLine(0);
-
-    // After the first slide rotation, remove hero text to maximize background visibility.
-    let heroTextHidden = false;
-    function hideHeroText() {
-      if(heroTextHidden) return;
-      heroTextHidden = true;
-      if(heroLine1) heroLine1.closest('h1')?.remove();
-      if(rotatorEl) rotatorEl.closest('p')?.remove();
-    }
-
+    const heroRotator = document.getElementById('heroRotator');
+    const heroAfterText = document.getElementById('heroAfterText');
     const heroTopBar = document.getElementById('heroTopBar');
+
     let heroTopBarHidden = false;
     function hideHeroTopBar() {
       if(heroTopBarHidden) return;
       heroTopBarHidden = true;
       if(heroTopBar) heroTopBar.remove();
+    }
+
+    let heroTextHidden = false;
+    function hideHeroTextAndShowReplacement() {
+      if(heroTextHidden) return;
+      heroTextHidden = true;
+      if(heroLine1) heroLine1.style.display = 'none';
+      if(heroRotator) heroRotator.style.display = 'none';
+      if(heroAfterText) heroAfterText.classList.remove('hidden');
     }
 
     if(slides.length > 0) {
@@ -647,23 +637,10 @@ Read full article →
         currentSlide = (currentSlide + 1) % slides.length;
         slides[currentSlide].classList.add('active');
 
-        // After the first slide change, hide top bar + hero texts.
         if(currentSlide === 1) {
           hideHeroTopBar();
-          hideHeroText();
-
-          // Show the required marketing line ABOVE the navigation section.
-          const newLine = document.getElementById('heroAfterText');
-          if(newLine) {
-            newLine.classList.remove('hidden');
-            newLine.textContent = 'We are ready to serve your business today.';
-
-          }
+          hideHeroTextAndShowReplacement();
         }
-
-
-        currentLine = (currentLine + 1) % rotatorLines.length;
-        showRotatorLine(currentLine);
       }, 5000);
     }
   })();

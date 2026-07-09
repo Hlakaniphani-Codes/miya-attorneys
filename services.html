@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Practice Areas | MIYA ATTORNEYS – Legal Expertise</title>
-  <meta name="description" content="Miya Attorneys offers strategic legal services in constitutional law, corporate & commercial, property, employment, legislative drafting, and dispute resolution across South Africa.">
-  
+  <meta name="description" content="Miya Attorneys offers strategic legal services across litigation, municipal law, construction, labour, corporate, governance, property, and family law.">
+
   <!-- Google Fonts + Font Awesome + Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +29,6 @@
     html { scroll-behavior: smooth; }
     body { -webkit-font-smoothing: antialiased; background-color: #FFFFFF; color: #1F1F1F; }
 
-    /* Premium card hover */
     .legal-frame {
       border: 1px solid rgba(223, 177, 91, 0.25);
       background-color: #FFFFFF;
@@ -50,7 +49,6 @@
     }
     .hover-line:hover::after { transform: scaleX(1); transform-origin: bottom left; }
 
-    /* Mobile menu */
     .mobile-menu {
       position: fixed; top: 0; right: -100%; width: 300px; height: 100vh; background: #0A0A0A;
       z-index: 1000; transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -63,7 +61,6 @@
     }
     .backdrop.visible { opacity: 1; visibility: visible; }
 
-    /* Hover dropdown summaries (dark theme) */
     .nav-hover-dropdown {
       position: fixed; background: #0A0A0A; border: 1px solid #C59946; border-top: 3px solid #DFB15B;
       box-shadow: 0 30px 60px rgba(0,0,0,0.4); width: 290px; z-index: 10000;
@@ -112,29 +109,52 @@
       border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;
     }
     #backToTop.show { opacity: 1; visibility: visible; }
+
+    /* Detail section toggle styling */
+    .detail-section {
+      background: #F9F9F9; border-left: 4px solid #DFB15B; padding: 2rem;
+      border-radius: 0.5rem; margin-top: 1.5rem;
+      display: none;
+      animation: fadeSlide 0.4s ease forwards;
+    }
+    .detail-section.active {
+      display: block;
+    }
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(-10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .detail-section ul { list-style: none; padding: 0; }
+    .detail-section ul li { padding: 0.3rem 0; display: flex; align-items: center; gap: 0.5rem; }
+    .detail-section ul li::before { content: "•"; color: #DFB15B; font-weight: bold; font-size: 1.2rem; }
+
+    .detail-toggle-link {
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .detail-toggle-link:hover { color: #9E7731; }
   </style>
 </head>
 <body class="font-sans text-sm antialiased text-neutral-800 bg-white">
 
-<!-- Top Bar (consistent with all pages) -->
+<!-- Top Bar -->
 <div class="bg-dark-950 border-b border-gold-600/30 text-white py-3 text-[11px] tracking-[0.2em] uppercase text-center font-medium px-4">
   Level 1 BBBEE Contributor &nbsp;|&nbsp; <span class="text-gold-500 font-semibold">Wholly Black Owned Firm</span> — Your Legal Remedy
 </div>
 
-<!-- Header / Navigation (mirroring homepage) -->
+<!-- Header – REDUCED SIZE -->
 <header class="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200 transition-all duration-300">
-  <div class="container mx-auto px-6 lg:px-16 py-4 flex items-center justify-between">
-    <!-- Logo + brand (logo.jpeg) -->
+  <div class="container mx-auto px-6 lg:px-16 py-3 flex items-center justify-between">
+
     <a href="index.html" class="flex items-center gap-3 group">
-      <img src="logo.jpeg" alt="MIYA ATTORNEYS Logo" class="h-14 w-auto object-contain drop-shadow-md" style="max-height: 3.75rem;">
+      <img src="logo.jpeg" alt="MIYA ATTORNEYS Logo" class="h-10 w-auto object-contain drop-shadow-md">
       <div class="flex flex-col">
-        <span class="font-serif text-2xl lg:text-3xl font-medium tracking-wide text-dark-900 group-hover:text-gold-600 transition-colors">MIYA ATTORNEYS</span>
-        <span class="text-[9px] uppercase tracking-[0.35em] text-gold-600 font-bold mt-0.5">Your Legal Remedy</span>
+        <span class="font-serif text-xl lg:text-2xl font-medium tracking-wide text-dark-900 group-hover:text-gold-600 transition-colors">MIYA ATTORNEYS</span>
+        <span class="text-[8px] uppercase tracking-[0.35em] text-gold-600 font-bold mt-0.5">Your Legal Remedy</span>
       </div>
     </a>
 
-    <!-- Desktop Navigation (pill style) -->
-    <nav class="hidden lg:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-600 border border-neutral-200 rounded-full px-8 py-3.5 bg-white shadow-sm">
+    <nav class="hidden lg:flex items-center gap-6 text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-600 border border-neutral-200 rounded-full px-5 py-2.5 bg-white shadow-sm">
       <a href="index.html" class="hover-line hover:text-dark-900" data-nav-summary="home">Home</a>
       <a href="about.html" class="hover-line hover:text-dark-900" data-nav-summary="about">About</a>
       <a href="services.html" class="text-dark-900 border-b-2 border-gold-500 pb-0.5" data-nav-summary="practice">Practice Areas</a>
@@ -143,14 +163,12 @@
       <a href="contact.html" class="hover-line hover:text-dark-900" data-nav-summary="contact">Contact</a>
     </nav>
 
-    <!-- CTA Button -->
     <div class="hidden lg:block">
-      <a href="contact.html" id="navBookBtn" class="bg-dark-900 hover:bg-gold-500 text-white hover:text-dark-900 font-bold tracking-widest uppercase text-[11px] px-6 py-3 transition-all duration-300 border border-transparent shadow-sm">
+      <a href="contact.html" id="navBookBtn" class="bg-dark-900 hover:bg-gold-500 text-white hover:text-dark-900 font-bold tracking-widest uppercase text-[10px] px-4 py-2 transition-all duration-300 border border-transparent shadow-sm">
         Request Consultation
       </a>
     </div>
 
-    <!-- Mobile Menu Toggle -->
     <button id="mobileMenuBtn" class="lg:hidden text-dark-900 focus:outline-none p-1">
       <i class="fa-solid fa-bars-staggered text-xl"></i>
     </button>
@@ -187,112 +205,229 @@
       </div>
       <h1 class="font-serif text-4xl md:text-6xl font-bold text-white">Strategic <span class="text-gold-500">Practice Areas</span></h1>
       <div class="section-divider mx-auto mt-5"></div>
-      <p class="text-gray-200 max-w-2xl mx-auto text-base font-light">The firm provides high quality expert service on a full range of corporate, commercial, negotiation and drafting of agreements, legal opinions, due diligence, constitutional law, property law, legislative drafting and administrative law.</p>
+<p class="mt-1 text-neutral-200 text-[10px] sm:text-xs uppercase tracking-[0.35em] font-bold" aria-live="polite">
+        The firm provides high quality expert service on a full range of corporate, commercial, negotiation and drafting of agreements, legal opinions, due diligence, constitutional law, property law, legislative drafting and administrative law.
+      </p>
     </div>
   </section>
 
   <!-- Quick navigation pills -->
-  <section class="py-12 bg-white border-b border-gold-100">
+  <section class="py-8 bg-white border-b border-gold-100">
     <div class="container mx-auto px-6 lg:px-16">
       <div class="flex flex-wrap justify-center gap-3">
-        <span class="bg-gold-50 text-gold-600 text-[10px] font-semibold px-3 py-1 rounded-full cursor-pointer hover:bg-gold-100" onclick="document.getElementById('corporate').scrollIntoView({behavior:'smooth'})">Corporate & Commercial</span>
-        <span onclick="document.getElementById('litigation').scrollIntoView({behavior:'smooth'})" class="bg-gold-50 text-gold-600 text-[10px] font-semibold px-3 py-1 rounded-full cursor-pointer hover:bg-gold-100">Litigation</span>
-        <span onclick="document.getElementById('property').scrollIntoView({behavior:'smooth'})" class="bg-gold-50 text-gold-600 text-[10px] font-semibold px-3 py-1 rounded-full cursor-pointer hover:bg-gold-100">Property & Land</span>
-        <span onclick="document.getElementById('employment').scrollIntoView({behavior:'smooth'})" class="bg-gold-50 text-gold-600 text-[10px] font-semibold px-3 py-1 rounded-full cursor-pointer hover:bg-gold-100">Employment Law</span>
-        <span onclick="document.getElementById('legislative').scrollIntoView({behavior:'smooth'})" class="bg-gold-50 text-gold-600 text-[10px] font-semibold px-3 py-1 rounded-full cursor-pointer hover:bg-gold-100">Legislative Drafting</span>
-        <span onclick="document.getElementById('constitutional').scrollIntoView({behavior:'smooth'})" class="bg-gold-50 text-gold-600 text-[10px] font-semibold px-3 py-1 rounded-full cursor-pointer hover:bg-gold-100">Constitutional Law</span>
+        <span onclick="document.getElementById('litigation').scrollIntoView({behavior:'smooth'})" class="bg-gold-50 text-gold-600 text-[10px] font-semibold px-3 py-1 rounded-full cursor-pointer hover:bg-gold-100">Litigation & Dispute</span>
+        <span onclick="document.getElementById('municipal').scrollIntoView({behavior:'smooth'})" class="bg-gold-50 text-gold-600 text-[10px] font-semibold px-3 py-1 rounded-full cursor-pointer hover:bg-gold-100">Municipal Law</span>
+        <span onclick="document.getElementById('construction').scrollIntoView({behavior:'smooth'})" class="bg-gold-50 text-gold-600 text-[10px] font-semibold px-3 py-1 rounded-full cursor-pointer hover:bg-gold-100">Construction & Infrastructure</span>
+        <span onclick="document.getElementById('labour').scrollIntoView({behavior:'smooth'})" class="bg-gold-50 text-gold-600 text-[10px] font-semibold px-3 py-1 rounded-full cursor-pointer hover:bg-gold-100">Labour & Employment</span>
+        <span onclick="document.getElementById('corporate').scrollIntoView({behavior:'smooth'})" class="bg-gold-50 text-gold-600 text-[10px] font-semibold px-3 py-1 rounded-full cursor-pointer hover:bg-gold-100">Corporate & Commercial</span>
+        <span onclick="document.getElementById('governance').scrollIntoView({behavior:'smooth'})" class="bg-gold-50 text-gold-600 text-[10px] font-semibold px-3 py-1 rounded-full cursor-pointer hover:bg-gold-100">Governance & Compliance</span>
+        <span onclick="document.getElementById('property').scrollIntoView({behavior:'smooth'})" class="bg-gold-50 text-gold-600 text-[10px] font-semibold px-3 py-1 rounded-full cursor-pointer hover:bg-gold-100">Property Law</span>
+        <span onclick="document.getElementById('family').scrollIntoView({behavior:'smooth'})" class="bg-gold-50 text-gold-600 text-[10px] font-semibold px-3 py-1 rounded-full cursor-pointer hover:bg-gold-100">Family & Deceased Estates</span>
       </div>
     </div>
   </section>
 
-  <!-- Constitutional & Public Law -->
-  <section id="constitutional" class="py-16 bg-white">
+  <!-- Practice Areas Grid – 8 cards -->
+  <section class="py-20 bg-white">
     <div class="container mx-auto px-6 lg:px-16">
-      <div class="text-center mb-10">
-        <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark-900">Public & <span class="text-gold-500">Constitutional Law</span></h2>
-        <div class="section-divider"></div>
-      </div>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="practice-card"><i class="fas fa-landmark text-gold-500 text-2xl mb-3"></i><h3 class="font-bold text-dark-900 text-xl">Constitutional Law</h3><p class="text-neutral-600 text-sm">Human rights matters, Administrative Justice, Access to information, Review of regulatory decisions.</p></div>
-        <div class="practice-card"><i class="fas fa-city text-gold-500 text-2xl mb-3"></i><h3 class="font-bold text-dark-900 text-xl">Municipal Law</h3><p class="text-neutral-600 text-sm">MFMA and Regulations, Municipal Systems Act, Property Rates Act, Intergovernmental Relations.</p></div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- 1. Litigation & Dispute Resolution -->
+        <div id="litigation" class="practice-card">
+          <i class="fas fa-gavel text-gold-500 text-2xl mb-3"></i>
+          <h3 class="font-bold text-dark-900 text-lg">Litigation & Dispute Resolution</h3>
+          <p class="text-neutral-600 text-sm">Representing clients in civil, commercial and administrative disputes.</p>
+          <span class="detail-toggle-link text-gold-600 text-xs font-bold uppercase tracking-wider hover:underline mt-2 inline-block" onclick="toggleDetail('litigation-detail')">View All Practice Areas →</span>
+        </div>
+
+        <!-- 2. Municipal Law -->
+        <div id="municipal" class="practice-card">
+          <i class="fas fa-city text-gold-500 text-2xl mb-3"></i>
+          <h3 class="font-bold text-dark-900 text-lg">Municipal Law</h3>
+          <p class="text-neutral-600 text-sm">Strategic legal advice to municipalities, state entities and public institutions.</p>
+          <span class="detail-toggle-link text-gold-600 text-xs font-bold uppercase tracking-wider hover:underline mt-2 inline-block" onclick="toggleDetail('municipal-detail')">View All Practice Areas →</span>
+        </div>
+
+        <!-- 3. Construction & Infrastructure Law -->
+        <div id="construction" class="practice-card">
+          <i class="fas fa-hard-hat text-gold-500 text-2xl mb-3"></i>
+          <h3 class="font-bold text-dark-900 text-lg">Construction & Infrastructure Law</h3>
+          <p class="text-neutral-600 text-sm">Legal support for construction projects, contracts and procurement.</p>
+          <span class="detail-toggle-link text-gold-600 text-xs font-bold uppercase tracking-wider hover:underline mt-2 inline-block" onclick="toggleDetail('construction-detail')">View All Practice Areas →</span>
+        </div>
+
+        <!-- 4. Labour & Employment Law -->
+        <div id="labour" class="practice-card">
+          <i class="fas fa-briefcase text-gold-500 text-2xl mb-3"></i>
+          <h3 class="font-bold text-dark-900 text-lg">Labour & Employment Law</h3>
+          <p class="text-neutral-600 text-sm">Employment advisory services, disciplinary processes and dispute resolution.</p>
+          <span class="detail-toggle-link text-gold-600 text-xs font-bold uppercase tracking-wider hover:underline mt-2 inline-block" onclick="toggleDetail('labour-detail')">View All Practice Areas →</span>
+        </div>
+
+        <!-- 5. Commercial & Corporate Law -->
+        <div id="corporate" class="practice-card">
+          <i class="fas fa-building text-gold-500 text-2xl mb-3"></i>
+          <h3 class="font-bold text-dark-900 text-lg">Commercial & Corporate Law</h3>
+          <p class="text-neutral-600 text-sm">Practical legal solutions for businesses at every stage of growth.</p>
+          <span class="detail-toggle-link text-gold-600 text-xs font-bold uppercase tracking-wider hover:underline mt-2 inline-block" onclick="toggleDetail('corporate-detail')">View All Practice Areas →</span>
+        </div>
+
+        <!-- 6. Governance & Compliance -->
+        <div id="governance" class="practice-card">
+          <i class="fas fa-shield-alt text-gold-500 text-2xl mb-3"></i>
+          <h3 class="font-bold text-dark-900 text-lg">Governance & Compliance</h3>
+          <p class="text-neutral-600 text-sm">Helping organisations strengthen governance, ensure regulatory compliance and effectively identify, manage and minimise legal risk.</p>
+          <span class="detail-toggle-link text-gold-600 text-xs font-bold uppercase tracking-wider hover:underline mt-2 inline-block" onclick="toggleDetail('governance-detail')">View All Practice Areas →</span>
+        </div>
+
+        <!-- 7. Property Law -->
+        <div id="property" class="practice-card">
+          <i class="fas fa-home text-gold-500 text-2xl mb-3"></i>
+          <h3 class="font-bold text-dark-900 text-lg">Property Law</h3>
+          <p class="text-neutral-600 text-sm">Providing practical legal solutions relating to property transactions, property disputes, land rights and related legal matters.</p>
+          <span class="detail-toggle-link text-gold-600 text-xs font-bold uppercase tracking-wider hover:underline mt-2 inline-block" onclick="toggleDetail('property-detail')">View All Practice Areas →</span>
+        </div>
+
+        <!-- 8. Family Law & Deceased Estates -->
+        <div id="family" class="practice-card">
+          <i class="fas fa-users text-gold-500 text-2xl mb-3"></i>
+          <h3 class="font-bold text-dark-900 text-lg">Family Law & Deceased Estates</h3>
+          <p class="text-neutral-600 text-sm">Providing compassionate and practical legal guidance in family law matters, estate administration, wills, trusts and succession planning.</p>
+          <span class="detail-toggle-link text-gold-600 text-xs font-bold uppercase tracking-wider hover:underline mt-2 inline-block" onclick="toggleDetail('family-detail')">View All Practice Areas →</span>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Corporate & Commercial -->
-  <section id="corporate" class="py-16 bg-neutral-50 border-t border-neutral-200">
-    <div class="container mx-auto px-6 lg:px-16">
-      <div class="text-center mb-10">
-        <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark-900">Corporate & <span class="text-gold-500">Commercial Law</span></h2>
-        <div class="section-divider"></div>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="practice-card"><i class="fas fa-building text-gold-500 text-2xl mb-3"></i><h3 class="font-bold text-dark-900 text-lg">Corporate & Commercial Law</h3><p class="text-neutral-600 text-sm">Company formations, Corporate governance, Shareholder agreements, Public Private Partnerships.</p></div>
-        <div class="practice-card"><i class="fas fa-handshake text-gold-500 text-2xl mb-3"></i><h3 class="font-bold text-dark-900 text-lg">Procurement & Infrastructure</h3><p class="text-neutral-600 text-sm">PPP tenders, Concession agreements, Town planning, Supply Chain Management.</p></div>
-        <div class="practice-card"><i class="fas fa-hard-hat text-gold-500 text-2xl mb-3"></i><h3 class="font-bold text-dark-900 text-lg">Construction Law</h3><p class="text-neutral-600 text-sm">JBCC, FIDIC, NHRBC, Mediation, Arbitration, Contract drafting.</p></div>
-      </div>
-    </div>
-  </section>
+  <!-- DETAILED SECTIONS (hidden by default, shown via toggle) -->
+  <section class="py-16 bg-neutral-50 border-t border-neutral-200">
+    <div class="container mx-auto px-6 lg:px-16 max-w-4xl">
 
-  <!-- Property & Land Rights -->
-  <section id="property" class="py-16 bg-white">
-    <div class="container mx-auto px-6 lg:px-16">
-      <div class="text-center mb-10">
-        <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark-900">Property & <span class="text-gold-500">Land Rights</span></h2>
-        <div class="section-divider"></div>
+      <!-- Litigation Detail -->
+      <div id="litigation-detail" class="detail-section">
+        <h3 class="font-serif text-2xl font-bold text-dark-900">Litigation & Dispute Resolution</h3>
+        <div class="w-12 h-0.5 bg-gold-500 my-3 rounded-full"></div>
+        <p class="text-neutral-700 text-sm leading-relaxed">We represent clients in civil, commercial and administrative disputes across all court levels. Our team is experienced in alternative dispute resolution, including mediation and arbitration, ensuring effective and efficient outcomes.</p>
+        <ul class="mt-4 text-sm">
+          <li>Civil litigation</li>
+          <li>Commercial dispute resolution</li>
+          <li>Administrative law proceedings</li>
+          <li>Mediation and arbitration</li>
+          <li>High Court and Supreme Court of Appeal representation</li>
+        </ul>
+        <span class="detail-toggle-link text-gold-600 text-xs font-bold uppercase tracking-wider hover:underline mt-4 inline-block" onclick="toggleDetail('litigation-detail')">← Back to practice areas</span>
       </div>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="practice-card"><i class="fas fa-home text-gold-500 text-2xl mb-3"></i><h3 class="font-bold text-dark-900 text-xl">Property & Land Rights</h3><p class="text-neutral-600 text-sm">Evictions, Property transfers, Registration of mortgage bonds, Servitudes, Subdivisions.</p></div>
-        <div class="practice-card"><i class="fas fa-file-signature text-gold-500 text-2xl mb-3"></i><h3 class="font-bold text-dark-900 text-xl">Conveyancing & Notarial Practice</h3><p class="text-neutral-600 text-sm">Property transfers, Subdivisions, Sectional title developments, Bond registrations, Antenuptial contracts.</p></div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Employment & Dispute Resolution -->
-  <section id="employment" class="py-16 bg-neutral-50 border-t border-neutral-200">
-    <div class="container mx-auto px-6 lg:px-16">
-      <div class="text-center mb-10">
-        <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark-900">Employment & <span class="text-gold-500">Dispute Resolution</span></h2>
-        <div class="section-divider"></div>
+      <!-- Municipal Law Detail -->
+      <div id="municipal-detail" class="detail-section">
+        <h3 class="font-serif text-2xl font-bold text-dark-900">Municipal Law</h3>
+        <div class="w-12 h-0.5 bg-gold-500 my-3 rounded-full"></div>
+        <p class="text-neutral-700 text-sm leading-relaxed">Miya Attorneys provides strategic legal services to municipalities, state-owned entities and public institutions. Our experience enables us to advise on governance, regulatory compliance, procurement, litigation and administrative law while supporting sound decision-making and good governance.</p>
+        <p class="text-neutral-700 text-sm font-semibold mt-4">Our services include:</p>
+        <ul class="mt-2 text-sm">
+          <li>Legal opinions</li>
+          <li>Contract drafting and review</li>
+          <li>Procurement and SCM advice</li>
+          <li>Administrative law</li>
+          <li>Litigation</li>
+          <li>Governance and compliance</li>
+          <li>Council support</li>
+          <li>Policy development</li>
+        </ul>
+        <span class="detail-toggle-link text-gold-600 text-xs font-bold uppercase tracking-wider hover:underline mt-4 inline-block" onclick="toggleDetail('municipal-detail')">← Back to practice areas</span>
       </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="practice-card"><i class="fas fa-briefcase text-gold-500 text-2xl mb-3"></i><h3 class="font-bold text-dark-900 text-lg">Employment Law</h3><p class="text-neutral-600 text-sm">CCMA arbitrations, Disciplinary proceedings, Labour Court representation.</p></div>
-        <div class="practice-card" id="litigation"><i class="fas fa-gavel text-gold-500 text-2xl mb-3"></i><h3 class="font-bold text-dark-900 text-lg">Litigation</h3><p class="text-neutral-600 text-sm">Magistrates Court, High Court, Constitutional Court, Supreme Court of Appeal.</p></div>
-        <div class="practice-card"><i class="fas fa-stethoscope text-gold-500 text-2xl mb-3"></i><h3 class="font-bold text-dark-900 text-lg">Medical Malpractice</h3><p class="text-neutral-600 text-sm">Public/private hospitals, Constitutional right to healthcare, Claims navigation.</p></div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Legislative Drafting & Specialized Services -->
-  <section id="legislative" class="py-16 bg-white">
-    <div class="container mx-auto px-6 lg:px-16">
-      <div class="text-center mb-10">
-        <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark-900">Legislative & <span class="text-gold-500">Specialized Services</span></h2>
-        <div class="section-divider"></div>
+      <!-- Construction Detail -->
+      <div id="construction-detail" class="detail-section">
+        <h3 class="font-serif text-2xl font-bold text-dark-900">Construction & Infrastructure Law</h3>
+        <div class="w-12 h-0.5 bg-gold-500 my-3 rounded-full"></div>
+        <p class="text-neutral-700 text-sm leading-relaxed">We offer comprehensive legal support for construction projects, from contract drafting to dispute resolution, ensuring compliance with industry standards and procurement regulations. Our expertise covers all major contract forms and dispute resolution mechanisms.</p>
+        <ul class="mt-4 text-sm">
+          <li>JBCC, FIDIC and GCC contract review</li>
+          <li>Procurement and tendering advice</li>
+          <li>Construction dispute resolution</li>
+          <li>Infrastructure project advisory</li>
+          <li>Regulatory compliance</li>
+        </ul>
+        <span class="detail-toggle-link text-gold-600 text-xs font-bold uppercase tracking-wider hover:underline mt-4 inline-block" onclick="toggleDetail('construction-detail')">← Back to practice areas</span>
       </div>
-      <div class="grid md:grid-cols-4 gap-6">
-        <div class="practice-card"><i class="fas fa-file-alt text-gold-500 text-2xl mb-3"></i><h3 class="font-bold text-dark-900 text-lg">Legislative Drafting</h3><p class="text-neutral-600 text-sm">Plain language bylaws, Policies, Compliance manuals, Local laws, Regulations.</p></div>
-        <div class="practice-card"><i class="fas fa-truck text-gold-500 text-2xl mb-3"></i><h3 class="font-bold text-dark-900 text-lg">Transport Law</h3><p class="text-neutral-600 text-sm">Reviewing, interpreting and drafting primary and secondary transport legislation.</p></div>
-        <div class="practice-card"><i class="fas fa-shield-virus text-gold-500 text-2xl mb-3"></i><h3 class="font-bold text-dark-900 text-lg">Occupational Health & Safety</h3><p class="text-neutral-600 text-sm">OHS Act compliance, Legal Liability training.</p></div>
-        <div class="practice-card"><i class="fas fa-search text-gold-500 text-2xl mb-3"></i><h3 class="font-bold text-dark-900 text-lg">Forensic Investigation</h3><p class="text-neutral-600 text-sm">Due diligence, Forensic reports, Investigative analysis.</p></div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Legislative Drafting Excellence Banner -->
-  <section class="py-20 bg-dark-950 text-center border-t border-gold-600/20">
-    <div class="container mx-auto px-6 lg:px-16">
-      <i class="fas fa-file-alt text-gold-500 text-4xl mb-4"></i>
-      <h2 class="font-serif text-3xl md:text-4xl font-bold text-white">Legislative Drafting Excellence</h2>
-      <div class="section-divider mx-auto mt-3 bg-gold-500"></div>
-      <p class="max-w-2xl mx-auto text-gray-300 text-sm">One of few firms with extensive experience in <span class="text-gold-500">plain language drafting of legislation</span>, including bylaws, policies, compliance manuals, local laws, regulations and subordinate legislation.</p>
-      <div class="flex flex-wrap justify-center gap-3 mt-6">
-        <span class="bg-gold-500/20 border border-gold-500/30 rounded-full px-3 py-1 text-xs text-gold-300">Bylaws</span>
-        <span class="bg-gold-500/20 border border-gold-500/30 rounded-full px-3 py-1 text-xs text-gold-300">Policies</span>
-        <span class="bg-gold-500/20 border border-gold-500/30 rounded-full px-3 py-1 text-xs text-gold-300">Compliance Manuals</span>
-        <span class="bg-gold-500/20 border border-gold-500/30 rounded-full px-3 py-1 text-xs text-gold-300">Local Laws</span>
-        <span class="bg-gold-500/20 border border-gold-500/30 rounded-full px-3 py-1 text-xs text-gold-300">Regulations</span>
+      <!-- Labour Detail -->
+      <div id="labour-detail" class="detail-section">
+        <h3 class="font-serif text-2xl font-bold text-dark-900">Labour & Employment Law</h3>
+        <div class="w-12 h-0.5 bg-gold-500 my-3 rounded-full"></div>
+        <p class="text-neutral-700 text-sm leading-relaxed">We provide expert advice on all aspects of employment law, including disciplinary processes, labour disputes, and compliance with the Labour Relations Act and Basic Conditions of Employment Act. Our team represents clients in the CCMA and Labour Court.</p>
+        <ul class="mt-4 text-sm">
+          <li>CCMA and Labour Court representation</li>
+          <li>Disciplinary and grievance procedures</li>
+          <li>Employment contract drafting</li>
+          <li>Retrenchment and restructuring advice</li>
+          <li>Employment equity and B-BBEE compliance</li>
+        </ul>
+        <span class="detail-toggle-link text-gold-600 text-xs font-bold uppercase tracking-wider hover:underline mt-4 inline-block" onclick="toggleDetail('labour-detail')">← Back to practice areas</span>
       </div>
+
+      <!-- Corporate Detail -->
+      <div id="corporate-detail" class="detail-section">
+        <h3 class="font-serif text-2xl font-bold text-dark-900">Commercial & Corporate Law</h3>
+        <div class="w-12 h-0.5 bg-gold-500 my-3 rounded-full"></div>
+        <p class="text-neutral-700 text-sm leading-relaxed">Our team provides practical legal solutions for businesses at every stage of growth, from start-ups to established enterprises. We cover corporate governance, mergers, acquisitions, commercial agreements, and regulatory compliance.</p>
+        <ul class="mt-4 text-sm">
+          <li>Company formations and restructuring</li>
+          <li>Shareholder and partnership agreements</li>
+          <li>Mergers and acquisitions</li>
+          <li>Commercial contract drafting and negotiation</li>
+          <li>Corporate governance and compliance</li>
+        </ul>
+        <span class="detail-toggle-link text-gold-600 text-xs font-bold uppercase tracking-wider hover:underline mt-4 inline-block" onclick="toggleDetail('corporate-detail')">← Back to practice areas</span>
+      </div>
+
+      <!-- Governance Detail -->
+      <div id="governance-detail" class="detail-section">
+        <h3 class="font-serif text-2xl font-bold text-dark-900">Governance & Compliance</h3>
+        <div class="w-12 h-0.5 bg-gold-500 my-3 rounded-full"></div>
+        <p class="text-neutral-700 text-sm leading-relaxed">We help organisations strengthen governance frameworks, ensure regulatory compliance, and effectively identify, manage and minimise legal risk across all operations. Our services are designed to build resilient and ethical organisations.</p>
+        <ul class="mt-4 text-sm">
+          <li>Compliance audits and reviews</li>
+          <li>Risk management strategies</li>
+          <li>Board and governance advisory</li>
+          <li>Regulatory compliance (POPIA, OHS, etc.)</li>
+          <li>Policy development and implementation</li>
+        </ul>
+        <span class="detail-toggle-link text-gold-600 text-xs font-bold uppercase tracking-wider hover:underline mt-4 inline-block" onclick="toggleDetail('governance-detail')">← Back to practice areas</span>
+      </div>
+
+      <!-- Property Detail -->
+      <div id="property-detail" class="detail-section">
+        <h3 class="font-serif text-2xl font-bold text-dark-900">Property Law</h3>
+        <div class="w-12 h-0.5 bg-gold-500 my-3 rounded-full"></div>
+        <p class="text-neutral-700 text-sm leading-relaxed">We provide practical legal solutions for property transactions, disputes, land rights, and related matters. Our team ensures your property interests are fully protected through meticulous legal work and strategic advice.</p>
+        <ul class="mt-4 text-sm">
+          <li>Property transfers and conveyancing</li>
+          <li>Registration of mortgage bonds</li>
+          <li>Evictions and landlord-tenant disputes</li>
+          <li>Sectional title developments</li>
+          <li>Land rights and servitudes</li>
+        </ul>
+        <span class="detail-toggle-link text-gold-600 text-xs font-bold uppercase tracking-wider hover:underline mt-4 inline-block" onclick="toggleDetail('property-detail')">← Back to practice areas</span>
+      </div>
+
+      <!-- Family Detail -->
+      <div id="family-detail" class="detail-section">
+        <h3 class="font-serif text-2xl font-bold text-dark-900">Family Law & Deceased Estates</h3>
+        <div class="w-12 h-0.5 bg-gold-500 my-3 rounded-full"></div>
+        <p class="text-neutral-700 text-sm leading-relaxed">We offer compassionate and practical legal guidance in family law matters, estate administration, wills, trusts, and succession planning, helping you navigate sensitive issues with care and professionalism.</p>
+        <ul class="mt-4 text-sm">
+          <li>Divorce and matrimonial matters</li>
+          <li>Children's rights and custody</li>
+          <li>Drafting of wills and trusts</li>
+          <li>Estate administration and winding-up</li>
+          <li>Succession planning</li>
+        </ul>
+        <span class="detail-toggle-link text-gold-600 text-xs font-bold uppercase tracking-wider hover:underline mt-4 inline-block" onclick="toggleDetail('family-detail')">← Back to practice areas</span>
+      </div>
+
     </div>
   </section>
 
@@ -333,7 +468,32 @@
 
 <script>
   (function() {
-    // Mobile menu
+    // ========== TOGGLE DETAIL SECTIONS ==========
+    window.toggleDetail = function(detailId) {
+      const detail = document.getElementById(detailId);
+      if (!detail) return;
+
+      // If the clicked detail is already open, close it
+      if (detail.classList.contains('active')) {
+        detail.classList.remove('active');
+        return;
+      }
+
+      // Close all other open details
+      document.querySelectorAll('.detail-section.active').forEach(function(openDetail) {
+        openDetail.classList.remove('active');
+      });
+
+      // Open the clicked detail
+      detail.classList.add('active');
+
+      // Smooth scroll to the detail section
+      setTimeout(function() {
+        detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    };
+
+    // ========== MOBILE MENU ==========
     const mobileBtn = document.getElementById('mobileMenuBtn');
     const sideMenu = document.getElementById('sideMenu');
     const backdrop = document.getElementById('menuBackdrop');
@@ -343,33 +503,24 @@
     if(mobileBtn) mobileBtn.addEventListener('click', openMenu);
     if(closeBtn) closeBtn.addEventListener('click', closeMenu);
     if(backdrop) backdrop.addEventListener('click', closeMenu);
-    document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && sideMenu.classList.contains('open')) closeMenu(); });
+    document.addEventListener('keydown', function(e) { if(e.key === 'Escape' && sideMenu.classList.contains('open')) closeMenu(); });
 
-    // Back to top
+    // ========== BACK TO TOP ==========
     const backBtn = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => backBtn.classList.toggle('show', window.scrollY > 500));
-    backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    window.addEventListener('scroll', function() { backBtn.classList.toggle('show', window.scrollY > 500); });
+    backBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-    // Consultation redirect (optional alert)
-    const consultBtn = document.getElementById('navBookBtn');
-    if(consultBtn) {
-      consultBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.location.href = 'contact.html';
-      });
-    }
-
-    // Sticky header hide/show
+    // ========== STICKY HEADER HIDE/SHOW ==========
     let lastScroll = 0;
     const header = document.querySelector('header');
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', function() {
       const cur = window.scrollY;
       if (cur > lastScroll && cur > 100) header.style.transform = 'translateY(-100%)';
       else if (cur < lastScroll) header.style.transform = 'translateY(0)';
       lastScroll = cur;
     });
 
-    // ======================= HOVER DROPDOWN SUMMARIES =======================
+    // ========== HOVER DROPDOWN SUMMARIES ==========
     const summaryMap = {
       practice: { title: "⚖️ Core Practice Pillars", items: [{ icon: "fa-solid fa-landmark", title: "Constitutional & Public Law", desc: "Human rights, municipal law", link: "services.html#constitutional" },{ icon: "fa-solid fa-building", title: "Corporate & Commercial Law", desc: "Company formations, governance", link: "services.html#corporate" },{ icon: "fa-solid fa-home", title: "Property & Land Rights", desc: "Evictions, transfers", link: "services.html#property" },{ icon: "fa-solid fa-briefcase", title: "Employment & Dispute", desc: "CCMA, labour court", link: "services.html#employment" }] },
       about: { title: "🏛️ Firm Overview", items: [{ icon: "fa-solid fa-chart-line", title: "Our Heritage", desc: "15+ years legal transformation", link: "about.html#leadership" },{ icon: "fa-solid fa-scale-balanced", title: "Mission & Values", desc: "Integrity & access", link: "about.html#vision-mission" },{ icon: "fa-solid fa-users", title: "Leadership", desc: "Nokwazi Miya & senior counsel", link: "about.html#leadership" },{ icon: "fa-solid fa-handshake", title: "BBBEE & Transformation", desc: "Level 1 Contributor", link: "about.html#composition" }] },
@@ -394,24 +545,24 @@
     function removeDropdown() { if(activeDropdown && activeDropdown.parentNode) activeDropdown.remove(); activeDropdown = null; }
     function createDropdown(link, data) {
       removeDropdown(); const div = document.createElement('div'); div.className = 'nav-hover-dropdown';
-      div.innerHTML = `<div class="dropdown-header">${data.title}</div><div class="dropdown-inner"></div>`;
+      div.innerHTML = '<div class="dropdown-header">' + data.title + '</div><div class="dropdown-inner"></div>';
       const inner = div.querySelector('.dropdown-inner');
-      data.items.forEach(item => { const a = document.createElement('a'); a.className = 'dropdown-summary-item'; a.href = item.link; a.innerHTML = `<div class="item-icon"><i class="${item.icon}"></i></div><div class="item-content"><div class="item-title">${item.title}</div><div class="item-desc">${item.desc}</div></div>`; inner.appendChild(a); });
+      data.items.forEach(function(item) { const a = document.createElement('a'); a.className = 'dropdown-summary-item'; a.href = item.link; a.innerHTML = '<div class="item-icon"><i class="' + item.icon + '"></i></div><div class="item-content"><div class="item-title">' + item.title + '</div><div class="item-desc">' + item.desc + '</div></div>'; inner.appendChild(a); });
       document.body.appendChild(div);
       const rect = link.getBoundingClientRect(); div.style.top = (rect.bottom + window.scrollY + 12) + 'px'; div.style.left = (rect.left + window.scrollX - 20) + 'px';
       div.classList.add('active'); activeDropdown = div;
-      div.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
-      div.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => { if(activeDropdown === div) removeDropdown(); }, 150); });
+      div.addEventListener('mouseenter', function() { clearTimeout(hideTimeout); });
+      div.addEventListener('mouseleave', function() { hideTimeout = setTimeout(function() { if(activeDropdown === div) removeDropdown(); }, 150); });
     }
 
     const navLinks = document.querySelectorAll('nav.hidden.lg\\:flex a');
-    navLinks.forEach(link => {
+    navLinks.forEach(function(link) {
       const key = getSummaryKey(link); if(!summaryMap[key]) return;
-      link.addEventListener('mouseenter', () => { if(hideTimeout) clearTimeout(hideTimeout); createDropdown(link, summaryMap[key]); });
-      link.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => removeDropdown(), 150); });
+      link.addEventListener('mouseenter', function() { if(hideTimeout) clearTimeout(hideTimeout); createDropdown(link, summaryMap[key]); });
+      link.addEventListener('mouseleave', function() { hideTimeout = setTimeout(function() { removeDropdown(); }, 150); });
     });
-    window.addEventListener('scroll', () => removeDropdown());
-    window.addEventListener('resize', () => removeDropdown());
+    window.addEventListener('scroll', function() { removeDropdown(); });
+    window.addEventListener('resize', function() { removeDropdown(); });
   })();
 </script>
 </body>

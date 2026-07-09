@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Our Attorneys | MIYA ATTORNEYS – Nokwazi Miya & Counsel</title>
-  <meta name="description" content="Meet Nokwazi B. Miya, founder of Miya Attorneys, and our network of senior legal counsel. Constitutional & corporate litigation experts in South Africa.">
+  <title>Our Attorneys | MIYA ATTORNEYS – Nokwazi Miya & Andile Mbili</title>
+  <meta name="description" content="Meet Nokwazi B. Miya, founder of Miya Attorneys, and Andile Mbili, candidate attorney. Constitutional & corporate litigation experts in South Africa.">
 
   <!-- Google Fonts + Font Awesome + Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +37,6 @@
     }
     .hover-line:hover::after { transform: scaleX(1); transform-origin: bottom left; }
 
-    /* Mobile menu */
     .mobile-menu {
       position: fixed; top: 0; right: -100%; width: 300px; height: 100vh; background: #0A0A0A;
       z-index: 1000; transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -50,7 +49,6 @@
     }
     .backdrop.visible { opacity: 1; visibility: visible; }
 
-    /* Hover dropdown summaries (dark theme consistent) */
     .nav-hover-dropdown {
       position: fixed; background: #0A0A0A; border: 1px solid #C59946; border-top: 3px solid #DFB15B;
       box-shadow: 0 30px 60px rgba(0,0,0,0.4); width: 290px; z-index: 10000;
@@ -91,25 +89,26 @@
 </head>
 <body class="font-sans text-sm antialiased text-neutral-800 bg-white">
 
-<!-- Top Bar (consistent with all pages) -->
+<!-- Top Bar -->
 <div class="bg-dark-950 border-b border-gold-600/30 text-white py-3 text-[11px] tracking-[0.2em] uppercase text-center font-medium px-4">
   Level 1 BBBEE Contributor &nbsp;|&nbsp; <span class="text-gold-500 font-semibold">Wholly Black Owned Firm</span> — Your Legal Remedy
 </div>
 
-<!-- Header / Navigation -->
+<!-- Header – REDUCED SIZE -->
 <header class="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200 transition-all duration-300">
-  <div class="container mx-auto px-6 lg:px-16 py-4 flex items-center justify-between">
-    <!-- Logo + brand (logo.jpeg) -->
+  <div class="container mx-auto px-6 lg:px-16 py-3 flex items-center justify-between">
+
+    <!-- Logo + brand (reduced) -->
     <a href="index.html" class="flex items-center gap-3 group">
-      <img src="logo.jpeg" alt="MIYA ATTORNEYS Logo" class="h-14 w-auto object-contain drop-shadow-md" style="max-height: 3.75rem;">
+      <img src="logo.jpeg" alt="MIYA ATTORNEYS Logo" class="h-10 w-auto object-contain drop-shadow-md">
       <div class="flex flex-col">
-        <span class="font-serif text-2xl lg:text-3xl font-medium tracking-wide text-dark-900 group-hover:text-gold-600 transition-colors">MIYA ATTORNEYS</span>
-        <span class="text-[9px] uppercase tracking-[0.35em] text-gold-600 font-bold mt-0.5">Your Legal Remedy</span>
+        <span class="font-serif text-xl lg:text-2xl font-medium tracking-wide text-dark-900 group-hover:text-gold-600 transition-colors">MIYA ATTORNEYS</span>
+        <span class="text-[8px] uppercase tracking-[0.35em] text-gold-600 font-bold mt-0.5">Your Legal Remedy</span>
       </div>
     </a>
 
-    <!-- Desktop Navigation (pill style) -->
-    <nav class="hidden lg:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-600 border border-neutral-200 rounded-full px-8 py-3.5 bg-white shadow-sm">
+    <!-- Desktop Navigation (reduced) -->
+    <nav class="hidden lg:flex items-center gap-6 text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-600 border border-neutral-200 rounded-full px-5 py-2.5 bg-white shadow-sm">
       <a href="index.html" class="hover-line hover:text-dark-900" data-nav-summary="home">Home</a>
       <a href="about.html" class="hover-line hover:text-dark-900" data-nav-summary="about">About</a>
       <a href="services.html" class="hover-line hover:text-dark-900" data-nav-summary="practice">Practice Areas</a>
@@ -118,9 +117,9 @@
       <a href="contact.html" class="hover-line hover:text-dark-900" data-nav-summary="contact">Contact</a>
     </nav>
 
-    <!-- CTA Button -->
+    <!-- CTA Button (reduced) -->
     <div class="hidden lg:block">
-      <a href="contact.html" id="navBookBtn" class="bg-dark-900 hover:bg-gold-500 text-white hover:text-dark-900 font-bold tracking-widest uppercase text-[11px] px-6 py-3 transition-all duration-300 border border-transparent shadow-sm">
+      <a href="contact.html" id="navBookBtn" class="bg-dark-900 hover:bg-gold-500 text-white hover:text-dark-900 font-bold tracking-widest uppercase text-[10px] px-4 py-2 transition-all duration-300 border border-transparent shadow-sm">
         Request Consultation
       </a>
     </div>
@@ -163,8 +162,8 @@
       <h1 class="font-serif text-4xl md:text-6xl font-bold text-white tracking-wide max-w-4xl mx-auto leading-tight">
         Leadership & Legal Expertise
       </h1>
-      <p class="text-stone-300 max-w-xl mx-auto text-sm md:text-base mt-6 font-light leading-relaxed">
-        Meet the founder and collaborating counsel of Miya Attorneys, dedicated to delivering your elite legal remedy.
+<p class="mt-1 text-neutral-200 text-[10px] sm:text-xs uppercase tracking-[0.35em] font-bold" aria-live="polite">
+        Meet the founder and candidate attorney of Miya Attorneys, dedicated to delivering your elite legal remedy.
       </p>
     </div>
   </section>
@@ -244,53 +243,32 @@
     </div>
   </section>
 
-  <!-- Collaborating Counsel Section -->
-  <section id="team" class="py-20 md:py-28 bg-gold-50/20">
+  <!-- Candidate Attorney Section – NEW: Andile Mbili -->
+  <section id="candidate" class="py-20 md:py-28 bg-gold-50/20">
     <div class="container mx-auto px-6 lg:px-16">
-      
       <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="text-gold-600 text-[10px] font-bold tracking-[0.25em] uppercase block mb-2">Collaborating Counsel</span>
-        <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark-900">Experienced Legal Partners</h2>
+        <span class="text-gold-600 text-[10px] font-bold tracking-[0.25em] uppercase block mb-2">Candidate Attorney</span>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark-900">Andile Mbili</h2>
         <div class="w-12 h-[2px] bg-gold-500 mx-auto mt-4 mb-4"></div>
         <p class="text-neutral-500 text-sm font-light">
-          Miya Attorneys retains a curated network of highly specialized senior legal counsel to assure flawless, comprehensive operational delivery across all practice matrices.
+          A dedicated and passionate candidate attorney committed to excellence and client-centred legal service.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        
-        <!-- Team Member 1 -->
-        <div class="bg-white rounded-xl border border-stone-200/60 p-6 md:p-8 flex flex-col sm:flex-row gap-6 transition-all duration-300 hover:shadow-xl hover:border-gold-500/40 group">
-          <div class="w-24 h-24 rounded-full bg-stone-100 border border-stone-200 flex-shrink-0 mx-auto overflow-hidden flex items-center justify-center">
-            <i class="fa-solid fa-user-tie text-3xl text-stone-400 group-hover:text-gold-600 transition-colors"></i>
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-white rounded-xl border border-stone-200/60 p-8 md:p-10 flex flex-col sm:flex-row gap-8 transition-all duration-300 hover:shadow-xl hover:border-gold-500/40 group">
+          <div class="w-28 h-28 rounded-full bg-stone-100 border border-stone-200 flex-shrink-0 mx-auto overflow-hidden flex items-center justify-center">
+            <i class="fa-solid fa-user-graduate text-4xl text-stone-400 group-hover:text-gold-600 transition-colors"></i>
           </div>
           <div class="flex-1 text-center sm:text-left">
-            <h3 class="font-bold text-dark-900 text-base md:text-lg">Thabo M. Dlamini</h3>
-            <p class="text-gold-600 text-xs font-semibold tracking-wide mt-0.5">Senior Commercial Law Attorney</p>
+            <h3 class="font-bold text-dark-900 text-xl">Andile Mbili</h3>
+            <p class="text-gold-600 text-sm font-semibold tracking-wide mt-0.5">Candidate Attorney</p>
             <div class="flex flex-wrap gap-2 my-3 justify-center sm:justify-start">
-              <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider bg-gold-50 text-gold-600 border border-gold-200/40 rounded">LLM Corporate Law</span>
-              <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider bg-gold-50 text-gold-600 border border-gold-200/40 rounded">Arbitration</span>
+              <span class="px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-gold-50 text-gold-600 border border-gold-200/40 rounded">LLB (UKZN)</span>
+              <span class="px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-gold-50 text-gold-600 border border-gold-200/40 rounded">Candidate Legal Practitioner</span>
             </div>
-            <p class="text-neutral-500 text-xs md:text-sm font-light leading-relaxed">
-              Specializes in large-scale corporate restructuring, precision M&A execution, and strategic commercial arbitration with over 12 years of elite corporate experience.
-            </p>
-          </div>
-        </div>
-
-        <!-- Team Member 2 -->
-        <div class="bg-white rounded-xl border border-stone-200/60 p-6 md:p-8 flex flex-col sm:flex-row gap-6 transition-all duration-300 hover:shadow-xl hover:border-gold-500/40 group">
-          <div class="w-24 h-24 rounded-full bg-stone-100 border border-stone-200 flex-shrink-0 mx-auto overflow-hidden flex items-center justify-center">
-            <i class="fa-solid fa-user-tie text-3xl text-stone-400 group-hover:text-gold-600 transition-colors"></i>
-          </div>
-          <div class="flex-1 text-center sm:text-left">
-            <h3 class="font-bold text-dark-900 text-base md:text-lg">Lerato P. Nkosi</h3>
-            <p class="text-gold-600 text-xs font-semibold tracking-wide mt-0.5">Head of Litigation</p>
-            <div class="flex flex-wrap gap-2 my-3 justify-center sm:justify-start">
-              <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider bg-gold-50 text-gold-600 border border-gold-200/40 rounded">High Court</span>
-              <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider bg-gold-50 text-gold-600 border border-gold-200/40 rounded">SCA Rights</span>
-            </div>
-            <p class="text-neutral-500 text-xs md:text-sm font-light leading-relaxed">
-              Litigation master with complete appearance rights up to the Supreme Court of Appeal. Concentrates fully on constitutional challenges and medical malpractice.
+            <p class="text-neutral-500 text-sm md:text-base font-light leading-relaxed">
+              Andile Mbili is a candidate attorney at Miya Attorneys, currently completing his practical vocational training under the mentorship of Nokwazi Miya. He assists with research, drafting, and case preparation across a broad spectrum of legal matters, including constitutional law, commercial disputes, and property law. Andile is committed to delivering meticulous, client-focused service and is dedicated to growing into a skilled and ethical legal practitioner.
             </p>
           </div>
         </div>
@@ -298,7 +276,7 @@
     </div>
   </section>
 
-  <!-- Strategic Advisory Services Section -->
+  <!-- Strategic Advisory Services Section (unchanged) -->
   <section id="advisory" class="py-20 md:py-28 bg-white border-t border-stone-100">
     <div class="container mx-auto px-6 lg:px-16">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
@@ -368,8 +346,29 @@
     </div>
   </section>
 
+  <!-- NEW: Community Impact Section -->
+  <section id="community" class="py-20 bg-stone-50 border-t border-stone-200/60">
+    <div class="container mx-auto px-6 lg:px-16 max-w-4xl">
+      <div class="text-center mb-12">
+        <span class="text-gold-600 text-[10px] font-bold tracking-[0.25em] uppercase block mb-2">Social Responsibility</span>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark-900">Community Impact</h2>
+        <div class="w-12 h-[2px] bg-gold-500 mx-auto mt-4"></div>
+      </div>
+      <div class="bg-white p-8 md:p-12 rounded-xl border border-stone-200/60 shadow-sm">
+        <div class="flex items-start gap-4">
+          <i class="fas fa-hands-helping text-gold-500 text-2xl mt-1"></i>
+          <div>
+            <p class="text-neutral-700 text-sm md:text-base leading-relaxed font-light">
+              At Miya Attorneys, we believe the practice of law carries responsibilities beyond legal representation. Through community initiatives and the Pelisa Foundation, we remain committed to promoting access to justice, empowering vulnerable communities and contributing to sustainable social development.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Testimonial Segment -->
-  <section class="py-20 bg-stone-50 border-t border-b border-stone-200/60">
+  <section class="py-20 bg-white border-t border-b border-stone-200/60">
     <div class="container mx-auto px-6 lg:px-16 max-w-4xl text-center">
       <i class="fas fa-quote-right text-gold-500/30 text-4xl block mb-4 mx-auto"></i>
       <p class="text-stone-700 text-lg md:text-xl font-serif italic leading-relaxed max-w-2xl mx-auto">
@@ -447,7 +446,7 @@
     window.addEventListener('scroll', () => backBtn.classList.toggle('show', window.scrollY > 500));
     backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // Consultation button (simple redirect)
+    // Consultation button
     const consultBtn = document.getElementById('navBookBtn');
     if(consultBtn) consultBtn.addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'contact.html'; });
 
@@ -461,11 +460,11 @@
       lastScroll = cur;
     });
 
-    // ======================= HOVER DROPDOWN SUMMARIES =======================
+    // Hover dropdown summaries (unchanged)
     const summaryMap = {
       practice: { title: "⚖️ Core Practice Pillars", items: [{ icon: "fa-solid fa-landmark", title: "Constitutional & Public Law", desc: "Human rights, municipal law", link: "services.html#constitutional" },{ icon: "fa-solid fa-building", title: "Corporate & Commercial Law", desc: "Company formations, governance", link: "services.html#corporate" },{ icon: "fa-solid fa-home", title: "Property & Land Rights", desc: "Evictions, transfers", link: "services.html#property" },{ icon: "fa-solid fa-briefcase", title: "Employment & Dispute", desc: "CCMA, labour court", link: "services.html#employment" }] },
       about: { title: "🏛️ Firm Overview", items: [{ icon: "fa-solid fa-chart-line", title: "Our Heritage", desc: "15+ years legal transformation", link: "about.html#leadership" },{ icon: "fa-solid fa-scale-balanced", title: "Mission & Values", desc: "Integrity & access", link: "about.html#vision-mission" },{ icon: "fa-solid fa-users", title: "Leadership", desc: "Nokwazi Miya & senior counsel", link: "about.html#leadership" },{ icon: "fa-solid fa-handshake", title: "BBBEE & Transformation", desc: "Level 1 Contributor", link: "about.html#composition" }] },
-      attorneys: { title: "👥 Our Legal Team", items: [{ icon: "fa-solid fa-user-tie", title: "Founder & Director", desc: "Nokwazi B. Miya", link: "attorneys.html#founder" },{ icon: "fa-solid fa-gavel", title: "Senior Counsel", desc: "Experienced litigators", link: "attorneys.html#team" },{ icon: "fa-solid fa-chalkboard-user", title: "Practice Group Leads", desc: "Specialised heads", link: "attorneys.html#advisory" },{ icon: "fa-solid fa-scale-balanced", title: "Legal Advisory", desc: "Strategic support", link: "attorneys.html#advisory" }] },
+      attorneys: { title: "👥 Our Legal Team", items: [{ icon: "fa-solid fa-user-tie", title: "Founder & Director", desc: "Nokwazi B. Miya", link: "attorneys.html#founder" },{ icon: "fa-solid fa-user-graduate", title: "Candidate Attorney", desc: "Andile Mbili", link: "attorneys.html#candidate" },{ icon: "fa-solid fa-hand-holding-heart", title: "Community Impact", desc: "Social responsibility", link: "attorneys.html#community" }] },
       insights: { title: "📘 Legal Intelligence", items: [{ icon: "fa-solid fa-newspaper", title: "Recent Publications", desc: "Constitutional updates", link: "blog.html#featured" },{ icon: "fa-solid fa-chart-simple", title: "Case Studies", desc: "Landmark wins", link: "blog.html#blog-grid" },{ icon: "fa-solid fa-bell", title: "Legal Alerts", desc: "Regulatory changes", link: "blog.html#subscribe" },{ icon: "fa-solid fa-book-open", title: "White Papers", desc: "Legislative insights", link: "blog.html#blog-grid" }] },
       contact: { title: "📞 Connect With Us", items: [{ icon: "fa-solid fa-location-dot", title: "Richards Bay HQ", desc: "Unit 2 Palm Court", link: "contact.html#locations" },{ icon: "fa-solid fa-building", title: "Gauteng Office", desc: "Johannesburg (appointment)", link: "contact.html#locations" },{ icon: "fa-regular fa-envelope", title: "Direct Counsel", desc: "counsel@miyaattorneys.com", link: "contact.html#contact-form" },{ icon: "fa-regular fa-calendar", title: "Schedule Consultation", desc: "Priority legal review", link: "contact.html#contact-form" }] },
       home: { title: "🏠 Firm Highlights", items: [{ icon: "fa-solid fa-crown", title: "Founder's Vision", desc: "Nokwazi Miya's leadership", link: "index.html#leadership-message" },{ icon: "fa-solid fa-chart-line", title: "Operational Excellence", desc: "98% success", link: "index.html#stats" },{ icon: "fa-solid fa-scale-balanced", title: "Constitutional Specialism", desc: "Admin justice", link: "index.html#expertise" },{ icon: "fa-regular fa-message", title: "Testimonials", desc: "Infrastructure win", link: "index.html#testimonial" }] }
