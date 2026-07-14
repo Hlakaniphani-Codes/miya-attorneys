@@ -14,8 +14,11 @@
     tailwind.config = {
       theme: {
         extend: {
-          colors: { gold: { 50: '#FDFBF7', 100: '#F7F2E8', 200: '#EFE3CE', 500: '#DFB15B', 600: '#C59946', 700: '#9E7731' } },
-          fontFamily: { serif: ['Cormorant Garamond', 'serif'], sans: ['Montserrat', 'sans-serif'] }
+          colors: {
+            gold: { 50: '#FDFBF7', 100: '#F7F2E8', 200: '#EFE3CE', 500: '#DFB15B', 600: '#C59946', 700: '#9E7731' },
+            dark: { 800: '#222222', 900: '#111111', 950: '#0A0A0A' }
+          },
+          fontFamily: { serif: ['Cormorant Garamond', 'Georgia', 'serif'], sans: ['Montserrat', 'system-ui', 'sans-serif'] }
         }
       }
     }
@@ -24,7 +27,6 @@
     html { scroll-behavior: smooth; }
     body { -webkit-font-smoothing: antialiased; background-color: #FFFFFF; color: #1F1F1F; }
     
-    /* Underline animation for navigation */
     .hover-line {
       position: relative;
     }
@@ -33,7 +35,7 @@
       position: absolute;
       width: 100%;
       transform: scaleX(0);
-      height: 1px;
+      height: 2px;
       bottom: -4px;
       left: 0;
       background-color: #DFB15B;
@@ -45,7 +47,6 @@
       transform-origin: bottom left;
     }
     
-    /* Blog Cards */
     .blog-card {
       background: #FFFFFF;
       border: 1px solid #E5E7EB;
@@ -84,24 +85,23 @@
       box-shadow: 0 15px 25px -12px rgba(0,0,0,0.1);
     }
     
-    /* Mobile menu (same as index) */
     .mobile-menu {
       position: fixed;
       top: 0;
       right: -100%;
-      width: 280px;
+      width: 300px;
       height: 100vh;
-      background: #FFFFFF;
+      background: #0A0A0A;
       z-index: 1000;
       transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      border-left: 1px solid #EFE3CE;
-      padding: 2rem;
+      border-left: 1px solid #C59946;
+      padding: 2.5rem;
     }
     .mobile-menu.open { right: 0; }
     .backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(18,18,18,0.15);
+      background: rgba(0,0,0,0.5);
       backdrop-filter: blur(4px);
       z-index: 999;
       opacity: 0;
@@ -109,20 +109,31 @@
       transition: 0.3s;
     }
     .backdrop.visible { opacity: 1; visibility: visible; }
-    .menu-link {
-      display: block;
-      padding: 0.7rem 0;
-      border-bottom: 1px solid rgba(223,177,91,0.2);
-      font-weight: 500;
-      color: #1F1F1F;
+
+    .nav-hover-dropdown {
+      position: fixed; background: #0A0A0A; border: 1px solid #C59946; border-top: 3px solid #DFB15B;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4); width: 290px; z-index: 10000;
+      transition: opacity 0.2s ease, transform 0.2s ease; opacity: 0; transform: translateY(10px);
+      pointer-events: none;
     }
-    .menu-link:hover {
-      color: #DFB15B;
-      padding-left: 0.5rem;
-      border-color: #DFB15B;
+    .nav-hover-dropdown.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .dropdown-inner { padding: 0.5rem 0; }
+    .dropdown-summary-item {
+      display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem 1.25rem;
+      transition: all 0.2s; border-left: 3px solid transparent; cursor: pointer; text-decoration: none;
+    }
+    .dropdown-summary-item:hover { background-color: #161616; border-left-color: #DFB15B; }
+    .dropdown-summary-item .item-icon { font-size: 0.85rem; color: #DFB15B; margin-top: 0.15rem; min-width: 20px; text-align: center; }
+    .dropdown-summary-item .item-title {
+      font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.75rem;
+      letter-spacing: 0.05em; text-transform: uppercase; color: #FFFFFF; margin-bottom: 0.15rem;
+    }
+    .dropdown-summary-item .item-desc { font-size: 0.7rem; line-height: 1.4; color: #A0A0A0; font-weight: 400; }
+    .dropdown-header {
+      padding: 0.85rem 1.25rem 0.4rem 1.25rem; border-bottom: 1px solid #222222;
+      font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; color: #DFB15B;
     }
     
-    /* Back to top */
     #backToTop {
       position: fixed;
       bottom: 24px;
@@ -143,79 +154,121 @@
     }
     #backToTop.show { opacity: 1; visibility: visible; }
     
-    .section-divider {
-      width: 50px;
-      height: 2px;
-      background: #DFB15B;
-      margin: 1rem auto;
-      border-radius: 2px;
-    }
     .search-input:focus {
       border-color: #DFB15B;
       outline: none;
       box-shadow: 0 0 0 2px rgba(223,177,91,0.1);
     }
+
+    /* --- header: logo enlarged, no border, tagline visible, firm name hidden --- */
+    header .flex .relative img {
+      height: auto;
+      width: auto;
+      max-height: 8rem;
+      max-width: 14rem;
+      object-fit: contain;
+      display: block;
+    }
+    /* Remove decorative border */
+    header .flex .relative .pointer-events-none {
+      display: none !important;
+    }
+    /* Show only the tagline, hide the firm name */
+    header .flex .flex-col .font-serif {
+      display: none !important;
+    }
+    /* Keep the tagline visible and style it */
+    header .flex .flex-col .text-gold-600 {
+      display: block !important;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      margin-top: 0.2rem;
+    }
+    @media (max-width: 1023px) {
+      header .container { padding-left: 1rem; padding-right: 1rem; }
+      header .flex .relative img { max-height: 5.5rem; max-width: 10rem; }
+      header .flex .flex-col .text-gold-600 { font-size: 0.45rem; }
+    }
+    @media (max-width: 640px) {
+      header .flex .relative img { max-height: 4rem; max-width: 7rem; }
+      header .flex .flex-col .text-gold-600 { font-size: 0.4rem; }
+    }
+    header .flex .relative img { image-rendering: auto; }
   </style>
 </head>
-<body class="text-stone-800 font-sans text-xs sm:text-sm antialiased">
+<body class="font-sans text-sm antialiased text-neutral-800 bg-white">
 
-<!-- Top Bar (identical to index) -->
-<div class="bg-gold-100 border-b border-gold-200 text-stone-700 py-2.5 text-[10px] tracking-widest uppercase text-center font-semibold px-4">
-  Level 1 BBBEE Contributor &nbsp;|&nbsp; Wholly Black Owned Firm Championing Legal Transformation
+<!-- Top Bar -->
+<div class="bg-dark-950 border-b border-gold-600/30 text-white py-3 text-[11px] tracking-[0.2em] uppercase text-center font-medium px-4">
+  Level 1 BBBEE Contributor &nbsp;|&nbsp; <span class="text-gold-500 font-semibold">Female Black Owned Firm</span> — Your Legal Remedy
 </div>
 
-<!-- Navigation (exact copy from index) -->
-<header class="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gold-200/60 transition-all duration-300">
-  <div class="container mx-auto px-6 lg:px-16 py-4 flex items-center justify-between">
-    <a href="index.html" class="flex flex-col text-left group">
-      <span class="font-serif text-2xl lg:text-3xl font-medium tracking-wide text-stone-900 group-hover:text-gold-600 transition-colors">MIYA ATTORNEYS</span>
-      <span class="text-[9px] uppercase tracking-[0.35em] text-gold-600 font-bold mt-0.5">Your Legal Remedy</span>
+<!-- Header – same as all other pages -->
+<header class="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200 transition-all duration-300">
+  <div class="container mx-auto px-4 lg:px-16 py-2.5 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2 group shrink-0">
+      <div class="relative flex items-center justify-center">
+        <img src="logo.jpeg" alt="MIYA ATTORNEYS Logo" class="object-contain drop-shadow-md" />
+      </div>
+      <!-- Only tagline visible, firm name hidden -->
+      <div class="flex flex-col leading-tight">
+        <span class="font-serif text-lg md:text-xl lg:text-2xl font-medium tracking-wide text-dark-900 group-hover:text-gold-600 transition-colors" style="display:none !important;">MIYA ATTORNEYS</span>
+        <span class="text-[6px] md:text-[8px] uppercase tracking-[0.35em] text-gold-600 font-bold mt-0.5">Your Legal Remedy</span>
+      </div>
     </a>
-    <nav class="hidden lg:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-stone-600">
-      <a href="index.html" class="hover-line transition-colors hover:text-stone-900">Home</a>
-      <a href="about.html" class="hover-line transition-colors hover:text-stone-900">About</a>
-      <a href="services.html" class="hover-line transition-colors hover:text-stone-900">Practice Areas</a>
-      <a href="attorneys.html" class="hover-line transition-colors hover:text-stone-900">Attorneys</a>
-      <a href="blog.html" class="text-stone-900 border-b-2 border-gold-500 pb-1">Insights</a>
-      <a href="contact.html" class="hover-line transition-colors hover:text-stone-900">Contact</a>
+
+    <nav class="hidden lg:flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-600 border border-neutral-200 rounded-full px-4 py-2 bg-white shadow-sm">
+      <a href="index.html" class="hover-line transition-colors hover:text-dark-900" data-nav-summary="home">Home</a>
+      <a href="about.html" class="hover-line transition-colors hover:text-dark-900" data-nav-summary="about">About</a>
+      <a href="services.html" class="hover-line transition-colors hover:text-dark-900" data-nav-summary="practice">Practice Areas</a>
+      <a href="attorneys.html" class="hover-line transition-colors hover:text-dark-900" data-nav-summary="attorneys">Attorneys</a>
+      <a href="blog.html" class="text-dark-900 border-b-2 border-gold-500 pb-0.5" data-nav-summary="insights">Insights</a>
+      <a href="contact.html" class="hover-line transition-colors hover:text-dark-900" data-nav-summary="contact">Contact</a>
     </nav>
-    <div class="hidden lg:block">
-      <a href="contact.html" id="navBookBtn" class="border border-gold-600 bg-white hover:bg-gold-500 hover:text-white text-gold-700 font-bold tracking-wider uppercase text-[10px] px-5 py-2.5 transition-all duration-300">Request Consultation</a>
+
+    <div class="hidden lg:block shrink-0">
+      <a href="contact.html" id="navBookBtn" class="bg-dark-900 hover:bg-gold-500 text-white hover:text-dark-900 font-bold tracking-widest uppercase text-[10px] px-4 py-2 transition-all duration-300 border border-transparent shadow-sm">
+        Request Consultation
+      </a>
     </div>
-    <button id="mobileMenuBtn" class="lg:hidden text-stone-800 focus:outline-none p-1"><i class="fa-solid fa-bars-staggered text-lg"></i></button>
+
+    <button id="mobileMenuBtn" class="lg:hidden text-dark-900 focus:outline-none p-1 ml-2 shrink-0">
+      <i class="fa-solid fa-bars-staggered text-xl"></i>
+    </button>
   </div>
 </header>
 
 <!-- Mobile Drawer -->
 <div class="backdrop" id="menuBackdrop"></div>
 <div class="mobile-menu flex flex-col" id="sideMenu">
-  <div class="flex justify-between items-center pb-6 border-b border-gold-200">
-    <span class="font-serif text-xl font-medium tracking-wide text-stone-900">MIYA ATTORNEYS</span>
-    <button id="closeMenuBtn" class="text-stone-500 hover:text-gold-600 text-2xl">&times;</button>
+  <div class="flex justify-between items-center pb-6 border-b border-neutral-800">
+    <span class="font-serif text-xl font-medium tracking-wide text-white">MIYA ATTORNEYS</span>
+    <button id="closeMenuBtn" class="text-neutral-400 hover:text-gold-500 text-3xl">&times;</button>
   </div>
-  <nav class="flex flex-col gap-5 mt-8 text-xs font-bold uppercase tracking-widest text-stone-600">
-    <a href="index.html" class="menu-link">Home</a>
-    <a href="about.html" class="menu-link">About Us</a>
-    <a href="services.html" class="menu-link">Practice Areas</a>
-    <a href="attorneys.html" class="menu-link">Our Attorneys</a>
-    <a href="blog.html" class="menu-link text-gold-600">Blog / Insights</a>
-    <a href="contact.html" class="menu-link">Contact Us</a>
+  <nav class="flex flex-col gap-6 mt-10 text-sm font-semibold uppercase tracking-widest text-neutral-300">
+    <a href="index.html">Home</a>
+    <a href="about.html" class="hover:text-white transition-colors">About Us</a>
+    <a href="services.html" class="hover:text-white transition-colors">Practice Areas</a>
+    <a href="attorneys.html" class="hover:text-white transition-colors">Our Attorneys</a>
+    <a href="blog.html" class="text-gold-500">Blog / Insights</a>
+    <a href="contact.html" class="hover:text-white transition-colors">Contact Us</a>
   </nav>
-  <div class="mt-auto pt-6 border-t border-gold-200 text-[10px] text-stone-400 tracking-wider"><p>© 2026 MIYA ATTORNEYS PTY LTD.</p></div>
+  <div class="mt-auto pt-6 border-t border-neutral-800 text-[11px] text-neutral-500 tracking-wider">
+    <p>© 2026 MIYA ATTORNEYS PTY LTD.</p>
+  </div>
 </div>
 
 <main>
-  <!-- Hero Section -->
-  <section class="relative py-20 bg-black text-center overflow-hidden">
+  <!-- Hero Section – single gold heading, no divider -->
+  <section class="relative py-28 bg-dark-950 text-center overflow-hidden">
     <div class="absolute inset-0 bg-gold-500/5"></div>
     <div class="container mx-auto px-6 lg:px-16 relative">
       <div class="inline-flex items-center gap-2 bg-gold-500/15 backdrop-blur-sm border border-gold-500/30 rounded-full px-4 py-1.5 mb-6">
         <i class="fas fa-newspaper text-gold-500 text-xs"></i>
         <span class="text-gold-500 text-xs font-semibold">LEGAL INSIGHTS & NEWS</span>
       </div>
-      <h1 class="font-serif text-4xl md:text-6xl font-bold text-white">The <span class="text-gold-500">Miya</span> Blog</h1>
-      <div class="section-divider mx-auto mt-5"></div>
-<p class="mt-1 text-neutral-200 text-[10px] sm:text-xs uppercase tracking-[0.35em] font-bold" aria-live="polite">
+      <h1 class="font-serif text-4xl md:text-6xl font-bold text-gold-500">The Miya Blog</h1>
+      <p class="mt-6 text-white text-sm md:text-base font-medium leading-relaxed max-w-2xl mx-auto">
         Expert analysis, firm updates, and legal perspectives from Miya Attorneys. Stay informed on the latest developments in law and justice.
       </p>
     </div>
@@ -296,18 +349,19 @@
   </section>
 </main>
 
-<!-- Footer (identical to index) -->
-<footer class="bg-white border-t border-gold-200 text-stone-600 py-12 text-center">
+<!-- Footer -->
+<footer class="bg-dark-950 border-t border-neutral-900 text-neutral-400 py-16 text-center">
   <div class="container mx-auto px-6 lg:px-16">
-    <div class="flex flex-wrap justify-center gap-8 mb-8 text-[11px] uppercase tracking-widest font-bold">
-      <a href="index.html" class="hover:text-gold-600 transition-colors">Home</a>
-      <a href="about.html" class="hover:text-gold-600 transition-colors">About</a>
-      <a href="services.html" class="hover:text-gold-600 transition-colors">Practice Areas</a>
-      <a href="attorneys.html" class="hover:text-gold-600 transition-colors">Attorneys</a>
-      <a href="blog.html" class="text-stone-900">Insights</a>
-      <a href="contact.html" class="hover:text-gold-600 transition-colors">Contact</a>
+    <div class="flex flex-wrap justify-center gap-10 mb-10 text-[11px] uppercase tracking-[0.25em] font-bold">
+      <a href="index.html" class="text-white hover:text-gold-500 transition-colors">Home</a>
+      <a href="about.html" class="hover:text-gold-500 transition-colors">About</a>
+      <a href="services.html" class="hover:text-gold-500 transition-colors">Practice Areas</a>
+      <a href="attorneys.html" class="hover:text-gold-500 transition-colors">Attorneys</a>
+      <a href="blog.html" class="text-gold-500">Insights</a>
+      <a href="contact.html" class="hover:text-gold-500 transition-colors">Contact</a>
     </div>
-    <p class="text-[10px] text-stone-500 uppercase tracking-widest font-medium leading-relaxed">© 2026 MIYA ATTORNEYS PTY LTD. All Rights Reserved. <br class="sm:hidden"> Regulated Corporate Counsel Group.</p>
+    <div class="w-16 h-px bg-neutral-800 mx-auto mb-8"></div>
+    <p class="text-[11px] text-neutral-500 uppercase tracking-widest font-medium leading-relaxed">© 2026 MIYA ATTORNEYS PTY LTD. All Rights Reserved. <br class="sm:hidden"> Your Legal Remedy.</p>
   </div>
 </footer>
 
@@ -316,19 +370,20 @@
 <script>
   (function() {
     // Mobile menu
-    const mobileBtn = document.getElementById('mobileMenuBtn'), side = document.getElementById('sideMenu'), backdrop = document.getElementById('menuBackdrop'), close = document.getElementById('closeMenuBtn');
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const side = document.getElementById('sideMenu');
+    const backdrop = document.getElementById('menuBackdrop');
+    const close = document.getElementById('closeMenuBtn');
     function openM() { side.classList.add('open'); backdrop.classList.add('visible'); document.body.style.overflow = 'hidden'; }
     function closeM() { side.classList.remove('open'); backdrop.classList.remove('visible'); document.body.style.overflow = ''; }
-    mobileBtn?.addEventListener('click', openM); close?.addEventListener('click', closeM); backdrop?.addEventListener('click', closeM);
+    mobileBtn?.addEventListener('click', openM);
+    close?.addEventListener('click', closeM);
+    backdrop?.addEventListener('click', closeM);
     
     // Back to top
     const backBtn = document.getElementById('backToTop');
     window.addEventListener('scroll', () => backBtn.classList.toggle('show', window.scrollY > 500));
     backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    
-    // Consultation alert
-    const alertConsult = (e) => { e.preventDefault(); alert("📅 Consultation: Please contact our registrar directly at +27 (0) 11 123 4567 or email counsel@miyaattorneys.com"); };
-    document.getElementById('navBookBtn')?.addEventListener('click', alertConsult);
     
     // Hide/show navigation on scroll
     let lastScroll = 0, nav = document.querySelector('header');
@@ -348,7 +403,46 @@
       setTimeout(() => msg.classList.add('hidden'), 3000);
       e.target.reset();
     });
-    
+
+    // Hover dropdown summaries (same as other pages)
+    const summaryMap = {
+      practice: { title: "⚖️ Core Practice Pillars", items: [{ icon: "fa-solid fa-landmark", title: "Constitutional & Public Law", desc: "Human rights, municipal law", link: "services.html#constitutional" },{ icon: "fa-solid fa-building", title: "Corporate & Commercial Law", desc: "Company formations, governance", link: "services.html#corporate" },{ icon: "fa-solid fa-home", title: "Property & Land Rights", desc: "Evictions, transfers", link: "services.html#property" },{ icon: "fa-solid fa-briefcase", title: "Employment & Dispute", desc: "CCMA, labour court", link: "services.html#employment" }] },
+      about: { title: "🏛️ Firm Overview", items: [{ icon: "fa-solid fa-chart-line", title: "Our Heritage", desc: "10+ years legal transformation", link: "about.html#leadership" },{ icon: "fa-solid fa-scale-balanced", title: "Mission & Values", desc: "Integrity & access", link: "about.html#vision-mission" },{ icon: "fa-solid fa-users", title: "Leadership", desc: "Nokwazi Miya & senior counsel", link: "about.html#leadership" },{ icon: "fa-solid fa-handshake", title: "BBBEE & Transformation", desc: "Level 1 Contributor, female black owned", link: "about.html#composition" }] },
+      attorneys: { title: "👥 Our Legal Team", items: [{ icon: "fa-solid fa-user-tie", title: "CEO & Founder", desc: "Nokwazi B. Miya — LLB UKZN", link: "attorneys.html#founder" },{ icon: "fa-solid fa-user-graduate", title: "Candidate Attorney", desc: "Andile Mbili", link: "attorneys.html#candidate" },{ icon: "fa-solid fa-hand-holding-heart", title: "Community Impact", desc: "Social responsibility", link: "attorneys.html#community" }] },
+      insights: { title: "📘 Legal Intelligence", items: [{ icon: "fa-solid fa-newspaper", title: "Recent Publications", desc: "Constitutional updates", link: "blog.html#featured" },{ icon: "fa-solid fa-chart-simple", title: "Case Studies", desc: "Landmark wins", link: "blog.html#blog-grid" },{ icon: "fa-solid fa-bell", title: "Legal Alerts", desc: "Regulatory changes", link: "blog.html#subscribe" },{ icon: "fa-solid fa-book-open", title: "White Papers", desc: "Legislative insights", link: "blog.html#blog-grid" }] },
+      contact: { title: "📞 Connect With Us", items: [{ icon: "fa-solid fa-location-dot", title: "Durban HQ", desc: "127 Percy Osborn Rd, Morningside", link: "contact.html#locations" },{ icon: "fa-solid fa-building", title: "Richards Bay Office", desc: "Unit 2 Palm Court", link: "contact.html#locations" },{ icon: "fa-regular fa-envelope", title: "Direct Counsel", desc: "admin@miyaattorneys.co.za", link: "contact.html#contact-form" },{ icon: "fa-regular fa-calendar", title: "Schedule Consultation", desc: "Priority legal review", link: "contact.html#contact-form" }] },
+      home: { title: "🏠 Firm Highlights", items: [{ icon: "fa-solid fa-crown", title: "Founder's Vision", desc: "Nokwazi Miya's leadership", link: "index.html#leadership-message" },{ icon: "fa-solid fa-chart-line", title: "Operational Excellence", desc: "98% success", link: "index.html#stats" },{ icon: "fa-solid fa-scale-balanced", title: "Constitutional Specialism", desc: "Admin justice", link: "index.html#expertise" },{ icon: "fa-regular fa-message", title: "Testimonials", desc: "Infrastructure win", link: "index.html#testimonial" }] }
+    };
+    function getSummaryKey(link) {
+      const href = link.getAttribute('href') || '';
+      const text = link.textContent.trim().toLowerCase();
+      if (href.includes('services') || text === 'practice areas') return 'practice';
+      if (href.includes('about')) return 'about';
+      if (href.includes('attorneys')) return 'attorneys';
+      if (href.includes('blog')) return 'insights';
+      if (href.includes('contact')) return 'contact';
+      return 'home';
+    }
+    let activeDropdown = null, hideTimeout = null;
+    function removeDropdown() { if(activeDropdown && activeDropdown.parentNode) activeDropdown.remove(); activeDropdown = null; }
+    function createDropdown(link, data) {
+      removeDropdown(); const div = document.createElement('div'); div.className = 'nav-hover-dropdown';
+      div.innerHTML = `<div class="dropdown-header">${data.title}</div><div class="dropdown-inner"></div>`;
+      const inner = div.querySelector('.dropdown-inner');
+      data.items.forEach(item => { const a = document.createElement('a'); a.className = 'dropdown-summary-item'; a.href = item.link; a.innerHTML = `<div class="item-icon"><i class="${item.icon}"></i></div><div class="item-content"><div class="item-title">${item.title}</div><div class="item-desc">${item.desc}</div></div>`; inner.appendChild(a); });
+      document.body.appendChild(div);
+      const rect = link.getBoundingClientRect(); div.style.top = (rect.bottom + window.scrollY + 12) + 'px'; div.style.left = (rect.left + window.scrollX - 20) + 'px';
+      div.classList.add('active'); activeDropdown = div;
+      div.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
+      div.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => { if(activeDropdown === div) removeDropdown(); }, 150); });
+    }
+    document.querySelectorAll('nav.hidden.lg\\:flex a').forEach(link => {
+      const key = getSummaryKey(link); if(!summaryMap[key]) return;
+      link.addEventListener('mouseenter', () => { if(hideTimeout) clearTimeout(hideTimeout); createDropdown(link, summaryMap[key]); });
+      link.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => removeDropdown(), 150); });
+    });
+    window.addEventListener('scroll', () => removeDropdown());
+
     // Blog logic
     let allPosts = [], currentFilter = 'all', currentSearch = '', visibleCount = 6;
     
@@ -416,7 +510,7 @@
     
     async function loadBlogPosts() {
       try {
-const res = await fetch(`${window.__API_BASE__ || 'https://miya-attorneys.onrender.com'}/api/tenants/miya-attorneys/posts?take=50&skip=0`);
+        const res = await fetch(`${window.__API_BASE__ || 'https://miya-attorneys.onrender.com'}/api/tenants/miya-attorneys/posts?take=50&skip=0`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         allPosts = (data.posts || []).map(p => ({
@@ -429,7 +523,6 @@ const res = await fetch(`${window.__API_BASE__ || 'https://miya-attorneys.onrend
           date: p.publishedAt || p.updatedAt || new Date().toISOString(),
           imageUrl: p.imageUrl || ''
         }));
-        // Sort newest first for consistent UI
         allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
       } catch (e) {
         console.error('loadBlogPosts failed:', e);
@@ -442,4 +535,3 @@ const res = await fetch(`${window.__API_BASE__ || 'https://miya-attorneys.onrend
 </script>
 </body>
 </html>
-

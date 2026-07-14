@@ -6,7 +6,6 @@
   <title>Contact Us | MIYA ATTORNEYS – Premium Legal Counsel</title>
   <meta name="description" content="Connect with MIYA ATTORNEYS for constitutional, corporate, and commercial legal expertise. Confidential consultations in Durban, Gauteng & Mpumalanga.">
 
-  <!-- Google Fonts + Font Awesome + Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -29,7 +28,6 @@
     html { scroll-behavior: smooth; }
     body { -webkit-font-smoothing: antialiased; background-color: #FFFFFF; color: #1F1F1F; }
 
-    /* Premium card hover effects */
     .contact-card {
       border: 1px solid rgba(223, 177, 91, 0.25);
       background-color: #FFFFFF;
@@ -45,7 +43,6 @@
     .contact-card:hover p { color: #CCCCCC; }
     .contact-card:hover .contact-icon { background-color: #1A1A1A; border-color: #DFB15B; }
 
-    /* Navigation underline */
     .hover-line { position: relative; }
     .hover-line::after {
       content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 2px;
@@ -54,7 +51,6 @@
     }
     .hover-line:hover::after { transform: scaleX(1); transform-origin: bottom left; }
 
-    /* Mobile menu */
     .mobile-menu {
       position: fixed; top: 0; right: -100%; width: 300px; height: 100vh; background: #0A0A0A;
       z-index: 1000; transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -67,7 +63,6 @@
     }
     .backdrop.visible { opacity: 1; visibility: visible; }
 
-    /* Hover dropdown summaries (dark theme) */
     .nav-hover-dropdown {
       position: fixed; background: #0A0A0A; border: 1px solid #C59946; border-top: 3px solid #DFB15B;
       box-shadow: 0 30px 60px rgba(0,0,0,0.4); width: 290px; z-index: 10000;
@@ -92,49 +87,81 @@
       font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; color: #DFB15B;
     }
 
-    /* Form focus */
     .input-focus:focus { border-color: #DFB15B; outline: none; box-shadow: 0 0 0 3px rgba(223,177,91,0.2); }
-    .section-divider { width: 60px; height: 2px; background: #DFB15B; margin: 1rem auto; border-radius: 4px; }
+
+    /* --- header: logo enlarged, no border, tagline visible, firm name hidden --- */
+    header .flex .relative img {
+      height: auto;
+      width: auto;
+      max-height: 8rem;
+      max-width: 14rem;
+      object-fit: contain;
+      display: block;
+    }
+    /* Remove decorative border */
+    header .flex .relative .pointer-events-none {
+      display: none !important;
+    }
+    /* Show only the tagline, hide the firm name */
+    header .flex .flex-col .font-serif {
+      display: none !important;
+    }
+    /* Keep the tagline visible and style it */
+    header .flex .flex-col .text-gold-600 {
+      display: block !important;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      margin-top: 0.2rem;
+    }
+    @media (max-width: 1023px) {
+      header .container { padding-left: 1rem; padding-right: 1rem; }
+      header .flex .relative img { max-height: 5.5rem; max-width: 10rem; }
+      header .flex .flex-col .text-gold-600 { font-size: 0.45rem; }
+    }
+    @media (max-width: 640px) {
+      header .flex .relative img { max-height: 4rem; max-width: 7rem; }
+      header .flex .flex-col .text-gold-600 { font-size: 0.4rem; }
+    }
+    header .flex .relative img { image-rendering: auto; }
   </style>
 </head>
 <body class="font-sans text-sm antialiased text-neutral-800 bg-white">
 
-<!-- Top Bar (consistent with homepage) -->
+<!-- Top Bar -->
 <div class="bg-dark-950 border-b border-gold-600/30 text-white py-3 text-[11px] tracking-[0.2em] uppercase text-center font-medium px-4">
-  Level 1 BBBEE Contributor &nbsp;|&nbsp; <span class="text-gold-500 font-semibold">Wholly Black Owned Firm</span> — Your Legal Remedy
+  Level 1 BBBEE Contributor &nbsp;|&nbsp; <span class="text-gold-500 font-semibold">Female Black Owned Firm</span> — Your Legal Remedy
 </div>
 
-<!-- Header / Navigation – REDUCED SIZE -->
+<!-- Header – consistent with all other pages -->
 <header class="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200 transition-all duration-300">
-  <div class="container mx-auto px-6 lg:px-16 py-3 flex items-center justify-between">
-    <!-- Logo + brand (reduced) -->
-    <a href="index.html" class="flex items-center gap-3 group">
-      <img src="logo.jpeg" alt="MIYA ATTORNEYS Logo" class="h-10 w-auto object-contain drop-shadow-md">
-      <div class="flex flex-col">
-        <span class="font-serif text-xl lg:text-2xl font-medium tracking-wide text-dark-900 group-hover:text-gold-600 transition-colors">MIYA ATTORNEYS</span>
-        <span class="text-[8px] uppercase tracking-[0.35em] text-gold-600 font-bold mt-0.5">Your Legal Remedy</span>
+  <div class="container mx-auto px-4 lg:px-16 py-2.5 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2 group shrink-0">
+      <div class="relative flex items-center justify-center">
+        <img src="logo.jpeg" alt="MIYA ATTORNEYS Logo" class="object-contain drop-shadow-md" />
+      </div>
+      <!-- Only tagline visible, firm name hidden -->
+      <div class="flex flex-col leading-tight">
+        <span class="font-serif text-lg md:text-xl lg:text-2xl font-medium tracking-wide text-dark-900 group-hover:text-gold-600 transition-colors" style="display:none !important;">MIYA ATTORNEYS</span>
+        <span class="text-[6px] md:text-[8px] uppercase tracking-[0.35em] text-gold-600 font-bold mt-0.5">Your Legal Remedy</span>
       </div>
     </a>
 
-    <!-- Desktop Navigation (reduced) -->
-    <nav class="hidden lg:flex items-center gap-6 text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-600 border border-neutral-200 rounded-full px-5 py-2.5 bg-white shadow-sm">
-      <a href="index.html" class="hover-line hover:text-dark-900" data-nav-summary="home">Home</a>
-      <a href="about.html" class="hover-line hover:text-dark-900" data-nav-summary="about">About</a>
-      <a href="services.html" class="hover-line hover:text-dark-900" data-nav-summary="practice">Practice Areas</a>
-      <a href="attorneys.html" class="hover-line hover:text-dark-900" data-nav-summary="attorneys">Attorneys</a>
-      <a href="blog.html" class="hover-line hover:text-dark-900" data-nav-summary="insights">Insights</a>
+    <nav class="hidden lg:flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-600 border border-neutral-200 rounded-full px-4 py-2 bg-white shadow-sm">
+      <a href="index.html" class="hover-line transition-colors hover:text-dark-900" data-nav-summary="home">Home</a>
+      <a href="about.html" class="hover-line transition-colors hover:text-dark-900" data-nav-summary="about">About</a>
+      <a href="services.html" class="hover-line transition-colors hover:text-dark-900" data-nav-summary="practice">Practice Areas</a>
+      <a href="attorneys.html" class="hover-line transition-colors hover:text-dark-900" data-nav-summary="attorneys">Attorneys</a>
+      <a href="blog.html" class="hover-line transition-colors hover:text-dark-900" data-nav-summary="insights">Insights</a>
       <a href="contact.html" class="text-dark-900 border-b-2 border-gold-500 pb-0.5" data-nav-summary="contact">Contact</a>
     </nav>
 
-    <!-- CTA Button (reduced) -->
-    <div class="hidden lg:block">
+    <div class="hidden lg:block shrink-0">
       <a href="#contactFormSection" id="navBookBtn" class="bg-dark-900 hover:bg-gold-500 text-white hover:text-dark-900 font-bold tracking-widest uppercase text-[10px] px-4 py-2 transition-all duration-300 border border-transparent shadow-sm">
         Request Consultation
       </a>
     </div>
 
-    <!-- Mobile Menu Toggle -->
-    <button id="mobileMenuBtn" class="lg:hidden text-dark-900 focus:outline-none p-1">
+    <button id="mobileMenuBtn" class="lg:hidden text-dark-900 focus:outline-none p-1 ml-2 shrink-0">
       <i class="fa-solid fa-bars-staggered text-xl"></i>
     </button>
   </div>
@@ -161,20 +188,19 @@
 </div>
 
 <main>
-  <!-- Hero Section -->
+  <!-- Hero Section – single gold heading, no divider -->
   <section class="relative py-28 bg-dark-950 text-center overflow-hidden">
     <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2060%2060%22%3E%3Cpath%20fill%3D%22%23DFB15B%22%20fill-opacity%3D%220.03%22%20d%3D%22M30%2030%20L45%2045%20L15%2045Z%22%2F%3E%3C%2Fsvg%3E')] opacity-20"></div>
     <div class="container mx-auto px-6 lg:px-16 relative z-2">
       <span class="text-gold-500 text-xs font-bold uppercase tracking-[0.4em] mb-4 block">CONNECT WITH EXCELLENCE</span>
-      <h1 class="font-serif text-5xl md:text-6xl text-white font-light tracking-wide">Get in <span class="text-gold-500 font-medium">Touch</span></h1>
-      <div class="section-divider mx-auto mt-6"></div>
-<p class="mt-1 text-neutral-200 text-[10px] sm:text-xs uppercase tracking-[0.35em] font-bold" aria-live="polite">
+      <h1 class="font-serif text-5xl md:text-6xl font-bold text-gold-500 tracking-wide">Get in Touch</h1>
+      <p class="mt-6 text-white text-sm md:text-base font-medium leading-relaxed max-w-2xl mx-auto">
         Premier legal counsel rooted in integrity. Reach out — our team delivers fire‑preventing legal solutions tailored to your needs.
       </p>
     </div>
   </section>
 
-  <!-- Contact Info Cards (updated HQ to Durban) -->
+  <!-- Contact Info Cards -->
   <section class="py-20 bg-white">
     <div class="container mx-auto px-6 lg:px-16">
       <div class="grid md:grid-cols-3 gap-8">
@@ -204,7 +230,7 @@
   <section class="py-20 bg-neutral-50 border-t border-neutral-200" id="contactFormSection">
     <div class="container mx-auto px-6 lg:px-16">
       <div class="grid lg:grid-cols-2 gap-16 items-start">
-        <!-- LEFT: Office details (updated) -->
+        <!-- LEFT: Office details -->
         <div class="space-y-8">
           <div>
             <span class="text-gold-700 text-[11px] font-bold tracking-wider uppercase"><i class="fas fa-map-marker-alt mr-1"></i> Our footprints</span>
@@ -226,14 +252,13 @@
           </div>
         </div>
 
-        <!-- RIGHT: Confidential Inquiry Form (unchanged) -->
+        <!-- RIGHT: Confidential Inquiry Form -->
         <div class="bg-dark-950 border border-gold-500/30 shadow-2xl transition-all">
           <div class="p-6 md:p-8">
             <div class="text-center mb-6">
-              <!-- Corporate branding header directly above form -->
               <div class="flex flex-col items-center justify-center mb-4">
                 <img src="logo.jpeg" alt="MIYA ATTORNEYS Logo" class="h-14 w-auto object-contain mb-2 drop-shadow">
-                <span class="font-serif text-2xl tracking-wider text-white font-bold">MIYA ATTORNEYS</span>
+                <span class="font-serif text-2xl tracking-wider text-white font-bold" style="display:none !important;">MIYA ATTORNEYS</span>
                 <span class="text-[8px] uppercase tracking-[0.4em] text-gold-500 font-bold">Your Legal Remedy</span>
               </div>
               <div class="w-12 h-0.5 bg-gold-500 mx-auto my-3"></div>
@@ -258,7 +283,7 @@
     </div>
   </section>
 
-  <!-- Google Map Section – updated to Durban HQ -->
+  <!-- Google Map Section -->
   <section class="py-16 bg-white border-t border-neutral-200">
     <div class="container mx-auto px-6 lg:px-16">
       <div class="text-center max-w-2xl mx-auto mb-8"><i class="fas fa-map text-gold-500 text-2xl"></i><h2 class="font-serif text-3xl font-bold mt-3">Find our <span class="text-gold-600">Headquarters</span></h2><div class="w-12 h-0.5 bg-gold-500 mx-auto my-4"></div><p class="text-gray-600 text-sm">127 Percy Osborn Road, Morningside, Durban — easily accessible with parking.</p></div>
@@ -267,7 +292,7 @@
     </div>
   </section>
 
-  <!-- Team Placeholder (unchanged) -->
+  <!-- Team Placeholder -->
   <section class="py-20 bg-neutral-50 border-t border-neutral-200">
     <div class="container mx-auto px-6 lg:px-16">
       <div class="text-center max-w-3xl mx-auto"><i class="fas fa-users text-gold-500 text-3xl"></i><h2 class="font-serif text-4xl font-bold text-dark-900 mt-2">Our <span class="text-gold-600">Team</span></h2><div class="w-16 h-0.5 bg-gold-500 mx-auto my-4 rounded-full"></div><p class="text-neutral-600 text-base max-w-xl mx-auto">Miya Attorneys is built on excellence, integrity, and transformation.</p></div>
@@ -275,7 +300,7 @@
     </div>
   </section>
 
-  <!-- Emergency CTA Banner (unchanged) -->
+  <!-- Emergency CTA Banner -->
   <div class="bg-dark-950 py-12 border-t border-gold-600/20">
     <div class="container mx-auto px-6 text-center">
       <p class="text-gold-400 text-sm uppercase tracking-widest">Emergency legal assistance</p>
@@ -285,7 +310,7 @@
   </div>
 </main>
 
-<!-- Footer (unchanged) -->
+<!-- Footer -->
 <footer class="bg-dark-950 border-t border-neutral-900 text-neutral-400 py-16 text-center">
   <div class="container mx-auto px-6 lg:px-16">
     <div class="flex flex-wrap justify-center gap-10 mb-10 text-[11px] uppercase tracking-[0.25em] font-bold">
@@ -303,7 +328,7 @@
 
 <script>
   (function() {
-    // ========== MOBILE MENU ==========
+    // Mobile menu
     const mobileBtn = document.getElementById('mobileMenuBtn');
     const sideMenu = document.getElementById('sideMenu');
     const backdrop = document.getElementById('menuBackdrop');
@@ -317,10 +342,10 @@
 
     // Scroll to form for consultation buttons
     const contactSection = document.getElementById('contactFormSection');
-    const consultBtns = document.querySelectorAll('#navBookBtn, #mobileConsultBtn');
+    const consultBtns = document.querySelectorAll('#navBookBtn');
     if(consultBtns.length) consultBtns.forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' }); if(sideMenu.classList.contains('open')) closeMenuFunc(); }));
     
-    // Form submission (secure placeholder)
+    // Form submission
     const contactForm = document.getElementById('contactForm');
     if(contactForm) {
       contactForm.addEventListener('submit', function(e) {
@@ -339,11 +364,11 @@
       });
     }
 
-    // ========== HOVER DROPDOWN SUMMARIES (unchanged) ==========
+    // Hover dropdown summaries
     const summaryMap = {
       practice: { title: "⚖️ Core Practice Pillars", items: [{ icon: "fa-solid fa-landmark", title: "Constitutional & Public Law", desc: "Human rights, municipal law", link: "services.html#constitutional" },{ icon: "fa-solid fa-building", title: "Corporate & Commercial Law", desc: "Company formations, governance", link: "services.html#corporate" },{ icon: "fa-solid fa-home", title: "Property & Land Rights", desc: "Evictions, transfers", link: "services.html#property" },{ icon: "fa-solid fa-briefcase", title: "Employment & Dispute", desc: "CCMA, labour court", link: "services.html#employment" }] },
-      about: { title: "🏛️ Firm Overview", items: [{ icon: "fa-solid fa-chart-line", title: "Our Heritage", desc: "15+ years legal transformation", link: "about.html#leadership" },{ icon: "fa-solid fa-scale-balanced", title: "Mission & Values", desc: "Integrity & access", link: "about.html#vision-mission" },{ icon: "fa-solid fa-users", title: "Leadership", desc: "Nokwazi Miya & senior counsel", link: "about.html#leadership" },{ icon: "fa-solid fa-handshake", title: "BBBEE & Transformation", desc: "Level 1 Contributor", link: "about.html#composition" }] },
-      attorneys: { title: "👥 Our Legal Team", items: [{ icon: "fa-solid fa-user-tie", title: "Founder & Director", desc: "Nokwazi B. Miya", link: "attorneys.html#founder" },{ icon: "fa-solid fa-gavel", title: "Senior Counsel", desc: "Experienced litigators", link: "attorneys.html#team" },{ icon: "fa-solid fa-chalkboard-user", title: "Practice Group Leads", desc: "Specialised heads", link: "attorneys.html#advisory" },{ icon: "fa-solid fa-scale-balanced", title: "Legal Advisory", desc: "Strategic support", link: "attorneys.html#advisory" }] },
+      about: { title: "🏛️ Firm Overview", items: [{ icon: "fa-solid fa-chart-line", title: "Our Heritage", desc: "10+ years legal transformation", link: "about.html#leadership" },{ icon: "fa-solid fa-scale-balanced", title: "Mission & Values", desc: "Integrity & access", link: "about.html#vision-mission" },{ icon: "fa-solid fa-users", title: "Leadership", desc: "Nokwazi Miya & senior counsel", link: "about.html#leadership" },{ icon: "fa-solid fa-handshake", title: "BBBEE & Transformation", desc: "Level 1 Contributor, female black owned", link: "about.html#composition" }] },
+      attorneys: { title: "👥 Our Legal Team", items: [{ icon: "fa-solid fa-user-tie", title: "CEO & Founder", desc: "Nokwazi B. Miya — LLB UKZN", link: "attorneys.html#founder" },{ icon: "fa-solid fa-user-graduate", title: "Candidate Attorney", desc: "Andile Mbili", link: "attorneys.html#candidate" },{ icon: "fa-solid fa-hand-holding-heart", title: "Community Impact", desc: "Social responsibility", link: "attorneys.html#community" }] },
       insights: { title: "📘 Legal Intelligence", items: [{ icon: "fa-solid fa-newspaper", title: "Recent Publications", desc: "Constitutional updates", link: "blog.html#featured" },{ icon: "fa-solid fa-chart-simple", title: "Case Studies", desc: "Landmark wins", link: "blog.html#blog-grid" },{ icon: "fa-solid fa-bell", title: "Legal Alerts", desc: "Regulatory changes", link: "blog.html#subscribe" },{ icon: "fa-solid fa-book-open", title: "White Papers", desc: "Legislative insights", link: "blog.html#blog-grid" }] },
       contact: { title: "📞 Connect With Us", items: [{ icon: "fa-solid fa-location-dot", title: "Durban HQ", desc: "127 Percy Osborn Rd, Morningside", link: "contact.html#locations" },{ icon: "fa-solid fa-building", title: "Richards Bay Office", desc: "Unit 2 Palm Court", link: "contact.html#locations" },{ icon: "fa-regular fa-envelope", title: "Direct Counsel", desc: "admin@miyaattorneys.co.za", link: "contact.html#contact-form" },{ icon: "fa-regular fa-calendar", title: "Schedule Consultation", desc: "Priority legal review", link: "contact.html#contact-form" }] },
       home: { title: "🏠 Firm Highlights", items: [{ icon: "fa-solid fa-crown", title: "Founder's Vision", desc: "Nokwazi Miya's leadership", link: "index.html#leadership-message" },{ icon: "fa-solid fa-chart-line", title: "Operational Excellence", desc: "98% success", link: "index.html#stats" },{ icon: "fa-solid fa-scale-balanced", title: "Constitutional Specialism", desc: "Admin justice", link: "index.html#expertise" },{ icon: "fa-regular fa-message", title: "Testimonials", desc: "Infrastructure win", link: "index.html#testimonial" }] }
@@ -377,6 +402,16 @@
       link.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => removeDropdown(), 150); });
     });
     window.addEventListener('scroll', () => removeDropdown());
+
+    // Hide/show header on scroll
+    let lastScroll = 0;
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      const cur = window.scrollY;
+      if (cur > lastScroll && cur > 100) header.style.transform = 'translateY(-100%)';
+      else if (cur < lastScroll) header.style.transform = 'translateY(0)';
+      lastScroll = cur;
+    });
   })();
 </script>
 </body>
